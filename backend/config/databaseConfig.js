@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 
+/**
+ * Function create a connection to the blackjack collection in the mongo database
+ */
 const connectToDatabase = async () => {
   try {
     const connection = await mongoose.connect(process.env.MONGODB_URI, {
