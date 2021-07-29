@@ -10,12 +10,13 @@ const authUser = asyncHandler(async (req, res) => {
   const { username, password } = req.body;
 
   const validUser = await User.findOne({ username });
+
   const validPassword = await validUser.matchPassword(password);
 
   // if user enter valid username and password
   if (validUser && validPassword) {
     res.json({
-      message: "Login successful.",
+      username: validUser.username,
     });
   } else {
     res.status(401);
