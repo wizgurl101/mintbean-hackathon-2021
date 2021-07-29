@@ -4,18 +4,17 @@ import { Redirect, useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 import { hideModal2 } from "../../store/modal2";
 
-
 const LoginForm = () => {
   let history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
+    const data = await dispatch(login(username, password));
     if (data.errors) {
       setErrors(data.errors);
     } else {
@@ -24,8 +23,8 @@ const LoginForm = () => {
     }
   };
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
+  const updateUsername = (e) => {
+    setUsername(e.target.value);
   };
 
   const updatePassword = (e) => {
@@ -47,11 +46,11 @@ const LoginForm = () => {
         </div>
         <div className="login_input">
           <input
-            name="email"
+            name="username"
             type="text"
-            placeholder="Email"
-            value={email}
-            onChange={updateEmail}
+            placeholder="Username"
+            value={username}
+            onChange={updateUsername}
           />
         </div>
         <div className="login_input">
