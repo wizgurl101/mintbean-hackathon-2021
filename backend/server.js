@@ -15,7 +15,7 @@ const server = express();
 
 // accept incoming request object to server as JSON
 server.use(express.json());
-
+``
 server.get("/", (req, res) => {
   res.send("Server is running...");
 });
