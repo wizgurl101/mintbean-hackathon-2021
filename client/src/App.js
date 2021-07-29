@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Modal from "./components/Modal/modal";
 import Modal2 from "./components/Modal/modal2";
-import GameBoard from "../src/pages/Gameboard";
+import GameBoard from "./components/GameBoardPage";
 import Home from "./components/Homepage/Home"
 
 function App() {
