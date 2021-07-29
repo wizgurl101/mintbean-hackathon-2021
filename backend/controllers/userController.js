@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+const { setTokenCookie, restoreUser} = require("../utils/auth")
 
 /**
  * @desc Authorization of user login
@@ -15,6 +16,8 @@ const authUser = asyncHandler(async (req, res) => {
 
   // if user enter valid username and password
   if (validUser && validPassword) {
+    // come back to fix ---
+    await setTokenCookie(res, validUser);
     res.json({
       username: validUser.username,
     });
