@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 // ProtectedRoute to be used if there's a component only logged in users should access
@@ -6,7 +7,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Modal from "./components/Modal/modal";
 import Modal2 from "./components/Modal/modal2";
-
+import GameBoard from '../src/pages/Gameboard';
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function App() {
             Edit <code>src/App.js</code> and save to reload.
           </p>
         </header>
+    <GameBoard/>
       </div>
     </BrowserRouter>
   );
