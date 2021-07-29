@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 
 const PORT = 8000;
 const connectToDatabase = require("./config/databaseConfig");
+const userRouter = require("./routes/userRoutes");
 
 // get environment variable(s)
 dotenv.config();
@@ -16,9 +17,12 @@ const server = express();
 server.use(express.json());
 
 server.get("/", (req, res) => {
-  res.send("Blackjack server is running...");
+  res.send("Server is running...");
 });
 
-server.listen(PORT, function () {
+// mount the route(s)
+server.use("/api/users", userRouter);
+
+server.listen(PORT, () => {
   console.log(`Server listening on http://localhost: ${PORT}`);
 });
