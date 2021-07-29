@@ -1,3 +1,4 @@
+import { csrfFetch } from "../store/csrf";
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
@@ -13,7 +14,7 @@ const removeUser = () => ({
 
 // thunks
 export const authenticate = () => async (dispatch) => {
-  const response = await fetch("/api/auth/", {
+  const response = await csrfFetch("/api/users/restore", {
     headers: {
       "Content-Type": "application/json",
     },
@@ -23,12 +24,12 @@ export const authenticate = () => async (dispatch) => {
   if (data.errors) {
     return;
   }
-  dispatch(setUser(data));
+  dispatch(setUser(data.user.username));
 };
 
 export const login = (username, password) => async (dispatch) => {
-  console.log(username, "username")
-  const response = await fetch("/api/users/login", {
+  // console.log(username, "username");
+  const response = await csrfFetch("/api/users/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -56,22 +57,20 @@ export const logout = () => async (dispatch) => {
   dispatch(removeUser());
 };
 
-export const signUp =
-  (username, password) =>
-  async (dispatch) => {
-    const formData = new FormData();
-    formData.append("username", username);
-    formData.append("password", password);
-    const response = await fetch("/api/auth/signup", {
-      method: "POST",
-      // headers: {
-      //     "Content-Type": "application/json",
-      // },
-      body: formData,
-    });
-    const data = await response.json();
-    dispatch(setUser(data));
-  };
+export const signUp = (username, password) => async (dispatch) => {
+  const formData = new FormData();
+  formData.append("username", username);
+  formData.append("password", password);
+  const response = await fetch("/api/auth/signup", {
+    method: "POST",
+    // headers: {
+    //     "Content-Type": "application/json",
+    // },
+    body: formData,
+  });
+  const data = await response.json();
+  dispatch(setUser(data));
+};
 
 // reducer
 const initialState = { user: null };

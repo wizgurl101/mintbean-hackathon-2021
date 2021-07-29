@@ -8,7 +8,6 @@ const { secret, expiresIn } = jwtConfig;
 // and then generates a JWT using the imported secret from the .env file. The secret will be
 // expire after a the time we set is up
 const setTokenCookie = (res, user) => {
-    console.log(secret,"secrettttt")
   // Create the token.
   const token = jwt.sign(
     { data: user.username },
@@ -34,20 +33,20 @@ const setTokenCookie = (res, user) => {
 const restoreUser = (req, res, next) => {
   // token parsed from cookies
   const { token } = req.cookies;
-
   return jwt.verify(token, secret, null, async (err, jwtPayload) => {
     if (err) {
       return next();
     }
 
     try {
-      const { username } = jwtPayload.data;
-      req.user = await User.findONe({username});
+        const username  = jwtPayload.data;
+        // console.log(username, "data")
+      req.user = await User.findOne({username});
     } catch (e) {
       res.clearCookie("token");
       return next();
     }
-
+    // console.log(req.user, "req user")
     if (!req.user) res.clearCookie("token");
 
     return next();

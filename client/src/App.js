@@ -14,12 +14,12 @@ function App() {
   const [loaded, setLoaded] = useState(false);
 
   // must complete API in the backend before this works properly
-  // useEffect(() => {
-  //   (async () => {
-  //     await dispatch(authenticate());
-  //     setLoaded(true);
-  //   })();
-  // }, [dispatch]);
+  useEffect(() => {
+    (async () => {
+      await dispatch(authenticate());
+      setLoaded(true);
+    })();
+  }, [dispatch]);
 
   // if (!loaded) {
   //   return null;
