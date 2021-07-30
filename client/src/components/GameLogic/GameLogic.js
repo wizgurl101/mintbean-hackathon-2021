@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 
 function GameLogic() {
   const [deck, setDeck] = useState([]);
+  const [dealerHand, setDealerHand] = useState([])
+  const [playerHand, setPlayerHand] = useState([])
+  const [dealerValue, setDealerValue] = useState(0)
+  const [playerValue, setPlayerValue] = useState(0)
+  const [winScore, setWinScore] = useState(21)
 
   // On start of a solo game
   const startSolo = () => {
@@ -44,18 +49,27 @@ function GameLogic() {
       array[i] = array[j];
       array[j] = temp;
     }
-    setDeck(array)
-    console.log(deck)
+    setDeck(array);
   };
+
+  // GameOver resets all values (function is called when round is over)
+  const gameOver = () => {
+    setPlayerValue(0)
+    setDealerValue(0)
+    setDealerHand([])
+    setPlayerHand([])
+  }
+
 
   return (
     <div>
       <button onClick={startSolo}>Play Solo</button>
-      {deck.length > 0 && deck.map(card => (
+      {deck.length > 0 &&
+        deck.map((card) => (
           <div>
             <p>{card}</p>
           </div>
-      ))}
+        ))}
     </div>
   );
 }
