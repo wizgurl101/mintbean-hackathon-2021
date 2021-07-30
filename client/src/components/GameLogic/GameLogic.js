@@ -27,7 +27,7 @@ function GameLogic() {
       "K",
       "A",
     ];
-    let cardType = ["Spades", "Clubs", "Hearts", "Diamonds"];
+    let cardType = ["♣", "♥", "♠", "♦"];
     for (let i = 0; i < cardVal.length; i++) {
       let cardV = cardVal[i];
       for (let j = 0; j < cardType.length; j++) {
@@ -60,9 +60,20 @@ function GameLogic() {
     setPlayerHand([])
   }
 
+  // removes card from deck and brings it to players card
+  const hitMe = () => {
+    let card = deck[0]
+    let temp = deck.slice(1)
+    let temp2 = playerHand
+    temp2.push(card)
+    setPlayerHand(temp2)
+    setDeck(temp)
+    // console.log(playerHand)
+  }
 
   return (
     <div>
+      <button onClick={hitMe}>Hit me!</button>
       <button onClick={startSolo}>Play Solo</button>
       {deck.length > 0 &&
         deck.map((card) => (
