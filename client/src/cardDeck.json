@@ -1,0 +1,263 @@
+{
+    "allCards": 
+    [{
+        "value": "A",
+        "suit": "♠",
+        "valueBottom": "A"
+    },
+    {
+        "value": "A",
+        "suit": "♦",
+        "valueBottom": "A"
+    },
+    {
+        "value": "A",
+        "suit": "♣",
+        "valueBottom": "A"
+    },
+    {
+        "value": "A",
+        "suit": "♥",
+        "valueBottom": "A"
+    },
+    {
+        "value": "2",
+        "suit": "♠",
+        "valueBottom": "2"
+    },
+    {
+        "value": "2",
+        "suit": "♦",
+        "valueBottom": "2"
+    },
+    {
+        "value": "2",
+        "suit": "♣",
+        "valueBottom": "2"
+    },
+    {
+        "value": "2",
+        "suit": "♥",
+        "valueBottom": "2"
+    },
+    {
+        "value": "3",
+        "suit": "♠",
+        "valueBottom": "3"
+    },
+    {
+        "value": "3",
+        "suit": "♦",
+        "valueBottom": "3"
+    },
+    {
+        "value": "3",
+        "suit": "♣",
+        "valueBottom": "3"
+    },
+    {
+        "value": "3",
+        "suit": "♥",
+        "valueBottom": "3"
+    },
+    {
+        "value": "4",
+        "suit": "♠",
+        "valueBottom": "4"
+    },
+    {
+        "value": "4",
+        "suit": "♦",
+        "valueBottom": "4"
+    },
+    {
+        "value": "4",
+        "suit": "♣",
+        "valueBottom": "4"
+    },
+    {
+        "value": "4",
+        "suit": "♥",
+        "valueBottom": "4"
+    },
+    {
+        "value": "5",
+        "suit": "♠",
+        "valueBottom": "5"
+    },
+    {
+        "value": "5",
+        "suit": "♦",
+        "valueBottom": "5"
+    },
+    {
+        "value": "5",
+        "suit": "♣",
+        "valueBottom": "5"
+    },
+    {
+        "value": "5",
+        "suit": "♥",
+        "valueBottom": "5"
+    },
+    {
+        "value": "6",
+        "suit": "♠",
+        "valueBottom": "6"
+    },
+    {
+        "value": "6",
+        "suit": "♦",
+        "valueBottom": "6"
+    },
+    {
+        "value": "6",
+        "suit": "♣",
+        "valueBottom": "6"
+    },
+    {
+        "value": "6",
+        "suit": "♥",
+        "valueBottom": "6"
+    },
+    {
+        "value": "7",
+        "suit": "♠",
+        "valueBottom": "7"
+    },
+    {
+        "value": "7",
+        "suit": "♦",
+        "valueBottom": "7"
+    },
+    {
+        "value": "7",
+        "suit": "♣",
+        "valueBottom": "7"
+    },
+    {
+        "value": "7",
+        "suit": "♥",
+        "valueBottom": "7"
+    },
+    {
+        "value": "8",
+        "suit": "♠",
+        "valueBottom": "8"
+    },
+    {
+        "value": "8",
+        "suit": "♦",
+        "valueBottom": "8"
+    },
+    {
+        "value": "8",
+        "suit": "♣",
+        "valueBottom": "8"
+    },
+    {
+        "value": "8",
+        "suit": "♥",
+        "valueBottom": "8"
+    },
+    {
+        "value": "9",
+        "suit": "♠",
+        "valueBottom": "9"
+    },
+    {
+        "value": "9",
+        "suit": "♦",
+        "valueBottom": "9"
+    },
+    {
+        "value": "9",
+        "suit": "♣",
+        "valueBottom": "9"
+    },
+    {
+        "value": "9",
+        "suit": "♥",
+        "valueBottom": "9"
+    },
+    {
+        "value": "10",
+        "suit": "♠",
+        "valueBottom": "10"
+    },
+    {
+        "value": "10",
+        "suit": "♦",
+        "valueBottom": "10"
+    },
+    {
+        "value": "10",
+        "suit": "♣",
+        "valueBottom": "10"
+    },
+    {
+        "value": "10",
+        "suit": "♥",
+        "valueBottom": "10"
+    },
+    {
+        "value": "J",
+        "suit": "♠",
+        "valueBottom": "J"
+    },
+    {
+        "value": "J",
+        "suit": "♦",
+        "valueBottom": "J"
+    },
+    {
+        "value": "J",
+        "suit": "♣",
+        "valueBottom": "J"
+    },
+    {
+        "value": "J",
+        "suit": "♥",
+        "valueBottom": "J"
+    },
+    {
+        "value": "Q",
+        "suit": "♠",
+        "valueBottom": "Q"
+    },
+    {
+        "value": "Q",
+        "suit": "♦",
+        "valueBottom": "Q"
+    },
+    {
+        "value": "Q",
+        "suit": "♣",
+        "valueBottom": "Q"
+    },
+    {
+        "value": "Q",
+        "suit": "♥",
+        "valueBottom": "Q"
+    },
+    {
+        "value": "K",
+        "suit": "♠",
+        "valueBottom": "K"
+    },
+    {
+        "value": "K",
+        "suit": "♦",
+        "valueBottom": "K"
+    },
+    {
+        "value": "K",
+        "suit": "♣",
+        "valueBottom": "K"
+    },
+    {
+        "value": "K",
+        "suit": "♥",
+        "valueBottom": "K"
+    }]
+}

@@ -7,7 +7,7 @@ import { authenticate } from "./store/session";
 import Modal from "./components/Modal/modal";
 import Modal2 from "./components/Modal/modal2";
 import GameBoard from "./components/GameBoardPage";
-import Home from "./components/Homepage/Home"
+import Home from "./components/Homepage/Home";
 
 function App() {
   const dispatch = useDispatch();
