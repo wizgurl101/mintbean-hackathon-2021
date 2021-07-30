@@ -25,7 +25,7 @@ function GameLogic() {
     let cardType = ["Spades", "Clubs", "Hearts", "Diamonds"];
     for (let i = 0; i < cardVal.length; i++) {
       let cardV = cardVal[i];
-      for (let j = 0; j < cardType; j++) {
+      for (let j = 0; j < cardType.length; j++) {
         let cardT = cardType[j];
         let card = cardV + cardT;
         tempDeck.push(card);
@@ -45,11 +45,17 @@ function GameLogic() {
       array[j] = temp;
     }
     setDeck(array)
+    console.log(deck)
   };
 
   return (
     <div>
       <button onClick={startSolo}>Play Solo</button>
+      {deck.length > 0 && deck.map(card => (
+          <div>
+            <p>{card}</p>
+          </div>
+      ))}
     </div>
   );
 }

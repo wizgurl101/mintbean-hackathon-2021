@@ -8,6 +8,7 @@ import Modal from "./components/Modal/modal";
 import Modal2 from "./components/Modal/modal2";
 import GameBoard from "./components/GameBoardPage";
 import Home from "./components/Homepage/Home"
+import GameLogic from "./components/GameLogic/GameLogic";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,15 +30,17 @@ function App() {
     <BrowserRouter>
       <Modal />
       <Modal2 />
-      <Home />
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-        </header>
-        <GameBoard />
-      </div>
+      <Switch>
+        <route path="/" exact={true}>
+          <Home />
+        </route>
+        <route path="/testlogic" exact={true}>
+          <GameLogic />
+        </route>
+        <route path="/gameboard" exact={true}>
+          <GameBoard />
+        </route>
+      </Switch>
     </BrowserRouter>
   );
 }
