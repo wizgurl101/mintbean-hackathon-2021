@@ -29,15 +29,14 @@ function App() {
     <BrowserRouter>
       <Modal />
       <Modal2 />
-      <Home />
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-        </header>
-        <GameBoard />
-      </div>
+      <Switch>
+        <route path="/" exact={true}>
+          <Home />
+        </route>
+        <route path="/gameboard" exact={true}>
+          <GameBoard />
+        </route>
+      </Switch>
     </BrowserRouter>
   );
 }
