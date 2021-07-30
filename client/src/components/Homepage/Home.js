@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import Login from "../auth/Login";
 import SignUp from "../auth/Signup";
@@ -10,7 +10,7 @@ import { Button } from "@chakra-ui/react";
 
 function Home() {
   const dispatch = useDispatch();
-
+  const user = useSelector((state) => state.session.user)
   const showLogin = () => {
     dispatch(setCurrentModal2(Login));
     dispatch(showModal2());
@@ -23,10 +23,23 @@ function Home() {
 
   return (
     <div>
-      <h1>Homepage!</h1>
+    <a href="/gameboard">GameBoard</a>
       <div>
-        <Button colorScheme="teal" onClick={showLogin}>Login</Button>
-        <Button colorScheme="teal" variant="outline" onClick={showSignup}>Signup</Button>
+        {!user && (
+          <div>
+            <Button colorScheme="teal" onClick={showLogin}>
+              Login
+            </Button>
+            <Button colorScheme="teal" variant="outline" onClick={showSignup}>
+              Signup
+            </Button>
+          </div>
+        )}
+        {user && (
+          <Button colorScheme="teal" variant="outline">
+            Logout
+          </Button>
+        )}
       </div>
     </div>
   );

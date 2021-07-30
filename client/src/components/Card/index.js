@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
 
 function Card() {
-
-      const [deck, setDeck] = useState([]);
-  const [dealerHand, setDealerHand] = useState([])
-  const [playerHand, setPlayerHand] = useState([])
-  const [dealerValue, setDealerValue] = useState(0)
-  const [playerValue, setPlayerValue] = useState(0)
-  const [winScore, setWinScore] = useState(21)
+  const [deck, setDeck] = useState([]);
+  const [dealerHand, setDealerHand] = useState([]);
+  const [playerHand, setPlayerHand] = useState([]);
+  const [dealerValue, setDealerValue] = useState(0);
+  const [playerValue, setPlayerValue] = useState(0);
+  const [winScore, setWinScore] = useState(21);
 
   // On start of a solo game
   const startSolo = () => {
@@ -29,11 +28,11 @@ function Card() {
       "K.",
       "A.",
     ];
-    let cardType = ["♣", "♥", "♠", "♦"];
+    let suits = ["♣", "♥", "♠", "♦"];
     for (let i = 0; i < cardVal.length; i++) {
       let cardV = cardVal[i];
-      for (let j = 0; j < cardType.length; j++) {
-        let cardT = cardType[j];
+      for (let j = 0; j < suits.length; j++) {
+        let cardT = suits[j];
         let card = cardV + cardT;
         tempDeck.push(card);
       }
@@ -52,54 +51,54 @@ function Card() {
       array[j] = temp;
     }
     setDeck(array);
-    console.log(deck)
+    console.log(deck);
   };
 
   // GameOver resets all values (function is called when round is over)
   const gameOver = () => {
-    setPlayerValue(0)
-    setDealerValue(0)
-    setDealerHand([])
-    setPlayerHand([])
-  }
+    setPlayerValue(0);
+    setDealerValue(0);
+    setDealerHand([]);
+    setPlayerHand([]);
+  };
 
   // removes card from deck and brings it to players card
   const hitMe = () => {
-    let card = deck[0]
-    let temp = deck.slice(1)
-    let temp2 = playerHand
-    temp2.push(card)
-    setPlayerHand(temp2)
-    setDeck(temp)
-    console.log(playerHand)
-  }
+    let card = deck[0];
+    let temp = deck.slice(1);
+    let temp2 = playerHand;
+    temp2.push(card);
+    setPlayerHand(temp2);
+    setDeck(temp);
+    console.log(playerHand);
+  };
 
-    return (
-      <div>
-        <button onClick={hitMe}>Hit me!</button>
-        <button onClick={startSolo}>Play Solo</button>
-        {deck.length > 0 &&
-          deck.map((card) => (
-            <Grid
-              bg="#EDF2F7"
-              w="100px"
-              h="150px"
-              border="2px"
-              borderRadius="10"
-              fontSize="2xl"
-              templateRows="repeat(3, 1fr)"
-            >
-              <GridItem align="left" ml={2}>
-                {card.split(".")[0]}
-              </GridItem>
-              <GridItem align="center">{card.split(".")[1]}</GridItem>
-              <GridItem align="right" mr={2} mt={4} transform="rotateX(180deg)">
-                {card.split(".")[0]}
-              </GridItem>
-            </Grid>
-          ))}
-      </div>
-    );
+  return (
+    <div>
+      <button onClick={hitMe}>Hit me!</button>
+      <button onClick={startSolo}>Play Solo</button>
+      {deck.length > 0 &&
+        deck.map((card) => (
+          <Grid
+            bg="#EDF2F7"
+            w="100px"
+            h="150px"
+            border="2px"
+            borderRadius="10"
+            fontSize="2xl"
+            templateRows="repeat(3, 1fr)"
+          >
+            <GridItem align="left" ml={2}>
+              {card.split(".")[0]}
+            </GridItem>
+            <GridItem align="center">{card.split(".")[1]}</GridItem>
+            <GridItem align="right" mr={2} mt={4} transform="rotateX(180deg)">
+              {card.split(".")[0]}
+            </GridItem>
+          </Grid>
+        ))}
+    </div>
+  );
 }
 
 export default Card;

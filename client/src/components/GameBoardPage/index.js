@@ -6,7 +6,7 @@ function Gameboard()  {
 
     return (
         <Box bg="green">
-           
+           <a href="/">Home</a>
             <Card/>
 
             <Stack mt={8} pacing={4}>
