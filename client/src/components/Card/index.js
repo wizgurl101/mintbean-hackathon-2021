@@ -92,7 +92,7 @@ function Card() {
     console.log(playerHand);
   };
 
-  // Will constantly keep track of dealer and player values as cards are added to either hand
+  // Will constantly keep track of dealers hand and sum up the value
   useEffect(() => {
     let dealerVal = 0;
     // Loop through the cards of the dealer and player to grab their values
@@ -109,6 +109,7 @@ function Card() {
     setDealerValue(dealerVal);
   }, [dealerHand.length]);
 
+    // Will constantly keep track players hand and sum up the value
     useEffect(() => {
       let playerVal = 0;
 
@@ -126,7 +127,9 @@ function Card() {
     }, [playerHand.length]);
 
   // On a player hold we check conditionals to determine winner
-  const hold = () => {};
+  const hold = () => {
+    
+  };
 
   return (
     <div>

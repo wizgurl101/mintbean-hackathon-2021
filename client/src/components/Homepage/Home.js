@@ -6,6 +6,7 @@ import SignUp from "../auth/Signup";
 import { showModal2, setCurrentModal2 } from "../../store/modal2";
 
 import { Button } from "@chakra-ui/react";
+import "./Home.css"
 
 
 function Home() {
@@ -22,7 +23,7 @@ function Home() {
   };
 
   return (
-    <div>
+    <div className="main">
     <h1>Welcome {user}!</h1>
     <a href="/gameboard">GameBoard</a>
       <div>
