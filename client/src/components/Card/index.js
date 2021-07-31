@@ -94,8 +94,7 @@ function Card() {
 
   // Will constantly keep track of dealer and player values as cards are added to either hand
   useEffect(() => {
-    let dealerVal = dealerValue;
-    let playerVal = playerValue;
+    let dealerVal = 0;
     // Loop through the cards of the dealer and player to grab their values
     for (let i = 0; i < dealerHand.length; i++) {
       let num = dealerHand[i].split(".")[0];
@@ -107,20 +106,24 @@ function Card() {
         dealerVal += Number(num);
       }
     }
-
-    for (let i = 0; i < playerHand.length; i++) {
-      let num = playerHand[i].split(".")[0];
-      if (num === "J" || num === "Q" || num === "K") {
-        playerVal += 10;
-      } else if (num === "A") {
-        playerVal += 11;
-      } else {
-        playerVal += Number(num);
-      }
-    }
     setDealerValue(dealerVal);
-    setPlayerValue(playerVal);
-  }, [dealerHand.length, playerHand.length]);
+  }, [dealerHand.length]);
+
+    useEffect(() => {
+      let playerVal = 0;
+
+      for (let i = 0; i < playerHand.length; i++) {
+        let num = playerHand[i].split(".")[0];
+        if (num === "J" || num === "Q" || num === "K") {
+          playerVal += 10;
+        } else if (num === "A") {
+          playerVal += 11;
+        } else {
+          playerVal += Number(num);
+        }
+      }
+      setPlayerValue(playerVal);
+    }, [playerHand.length]);
 
   // On a player hold we check conditionals to determine winner
   const hold = () => {};
@@ -128,7 +131,7 @@ function Card() {
   return (
     <div>
       <div>
-        <button onClick={hitMe}>Hit me!</button>
+        <button onClick={hitMe}>Hit!</button>
       </div>
       <div>
         <button onClick={hold}>Hold</button>
