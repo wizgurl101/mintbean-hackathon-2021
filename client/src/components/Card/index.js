@@ -41,24 +41,25 @@ function Card() {
     shuffleDeck(tempDeck);
   };
 
-
+  // Will trigger deck to be made upon loading into the page
   useEffect(() => {
-    startSolo()
-  }, [])
+    startSolo();
+  }, []);
 
   const dealCards = () => {
     // Assign the cards that will be handed out to the player and dealers for game to start
-    let playerCard1 = deck[0]
-    let dealerCard1 = deck[1]
-    let playerCard2 = deck[2]
-    let dealerCard2 = deck[3]
+    let playerCard1 = deck[0];
+    let dealerCard1 = deck[1];
+    let playerCard2 = deck[2];
+    let dealerCard2 = deck[3];
     // hand cards out to player and dealer
-    setPlayerHand([playerCard1, playerCard2])
-    setDealerHand([dealerCard1,dealerCard2])
+    setPlayerHand([playerCard1, playerCard2]);
+    setDealerHand([dealerCard1, dealerCard2]);
     // Update the deck being used
-    let updatedDeck = deck.slice(4)
-    setDeck(updatedDeck)
-  }
+    let updatedDeck = deck.slice(4);
+    setDeck(updatedDeck);
+    // valueCounter();
+  };
 
   const shuffleDeck = (array) => {
     // iterate through every card from end to start
@@ -69,7 +70,6 @@ function Card() {
       array[i] = array[j];
       array[j] = temp;
     }
-    console.log(array, "array")
     setDeck(array);
   };
 
@@ -92,14 +92,38 @@ function Card() {
     console.log(playerHand);
   };
 
-  const valueCounter = () => {
+  // Will constantly keep track of dealer and player values as cards are added to either hand
+  useEffect(() => {
+    let dealerVal = dealerValue;
+    let playerVal = playerValue;
+    // Loop through the cards of the dealer and player to grab their values
+    for (let i = 0; i < dealerHand.length; i++) {
+      let num = dealerHand[i].split(".")[0];
+      if (num === "J" || num === "Q" || num === "K") {
+        dealerVal += 10;
+      } else if (num === "A") {
+        dealerVal += 11;
+      } else {
+        dealerVal += Number(num);
+      }
+    }
 
-  };
+    for (let i = 0; i < playerHand.length; i++) {
+      let num = playerHand[i].split(".")[0];
+      if (num === "J" || num === "Q" || num === "K") {
+        playerVal += 10;
+      } else if (num === "A") {
+        playerVal += 11;
+      } else {
+        playerVal += Number(num);
+      }
+    }
+    setDealerValue(dealerVal);
+    setPlayerValue(playerVal);
+  }, [dealerHand.length, playerHand.length]);
 
   // On a player hold we check conditionals to determine winner
-  const hold = () => {
-
-  };
+  const hold = () => {};
 
   return (
     <div>
@@ -110,6 +134,11 @@ function Card() {
         <button onClick={hold}>Hold</button>
       </div>
       <button onClick={dealCards}>Start Game</button>
+      {playerValue > 0 && (
+        <p>
+          Player: {playerValue}, Dealer: {dealerValue}
+        </p>
+      )}
       {deck.length > 0 &&
         deck.map((card) => (
           <Grid
