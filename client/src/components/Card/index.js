@@ -41,6 +41,25 @@ function Card() {
     shuffleDeck(tempDeck);
   };
 
+
+  useEffect(() => {
+    startSolo()
+  }, [])
+
+  const dealCards = () => {
+    // Assign the cards that will be handed out to the player and dealers for game to start
+    let playerCard1 = deck[0]
+    let dealerCard1 = deck[1]
+    let playerCard2 = deck[2]
+    let dealerCard2 = deck[3]
+    // hand cards out to player and dealer
+    setPlayerHand([playerCard1, playerCard2])
+    setDealerHand([dealerCard1,dealerCard2])
+    // Update the deck being used
+    let updatedDeck = deck.slice(4)
+    setDeck(updatedDeck)
+  }
+
   const shuffleDeck = (array) => {
     // iterate through every card from end to start
     for (let i = array.length - 1; i > 0; i--) {
@@ -50,8 +69,8 @@ function Card() {
       array[i] = array[j];
       array[j] = temp;
     }
+    console.log(array, "array")
     setDeck(array);
-    console.log(deck);
   };
 
   // GameOver resets all values (function is called when round is over)
@@ -73,12 +92,68 @@ function Card() {
     console.log(playerHand);
   };
 
+  const valueCounter = () => {
+
+  };
+
+  // On a player hold we check conditionals to determine winner
+  const hold = () => {
+
+  };
+
   return (
     <div>
-      <button onClick={hitMe}>Hit me!</button>
-      <button onClick={startSolo}>Play Solo</button>
+      <div>
+        <button onClick={hitMe}>Hit me!</button>
+      </div>
+      <div>
+        <button onClick={hold}>Hold</button>
+      </div>
+      <button onClick={dealCards}>Start Game</button>
       {deck.length > 0 &&
         deck.map((card) => (
+          <Grid
+            bg="#EDF2F7"
+            w="100px"
+            h="150px"
+            border="2px"
+            borderRadius="10"
+            fontSize="2xl"
+            templateRows="repeat(3, 1fr)"
+          >
+            <GridItem align="left" ml={2}>
+              {card.split(".")[0]}
+            </GridItem>
+            <GridItem align="center">{card.split(".")[1]}</GridItem>
+            <GridItem align="right" mr={2} mt={4} transform="rotateX(180deg)">
+              {card.split(".")[0]}
+            </GridItem>
+          </Grid>
+        ))}
+      <h1>Dealer Cards</h1>
+      {dealerHand.length > 0 &&
+        dealerHand.map((card) => (
+          <Grid
+            bg="#EDF2F7"
+            w="100px"
+            h="150px"
+            border="2px"
+            borderRadius="10"
+            fontSize="2xl"
+            templateRows="repeat(3, 1fr)"
+          >
+            <GridItem align="left" ml={2}>
+              {card.split(".")[0]}
+            </GridItem>
+            <GridItem align="center">{card.split(".")[1]}</GridItem>
+            <GridItem align="right" mr={2} mt={4} transform="rotateX(180deg)">
+              {card.split(".")[0]}
+            </GridItem>
+          </Grid>
+        ))}
+      <h1>Player Hand</h1>
+      {playerHand.length > 0 &&
+        playerHand.map((card) => (
           <Grid
             bg="#EDF2F7"
             w="100px"
