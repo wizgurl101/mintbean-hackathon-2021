@@ -3,16 +3,20 @@ const {
   authUser,
   addNewUser,
   getLeaderBoardInfo,
+  updateUserNumberOfGameWon,
 } = require("../controllers/userController");
 const { setTokenCookie, restoreUser } = require("../utils/auth");
 
 const userRouter = express.Router();
 
-// POST request for /api/users/
-userRouter.post("/", addNewUser);
+// POST request for /api/users/signup
+userRouter.post("/signup", addNewUser);
 
 // POST request for /api/users/login
 userRouter.post("/login", authUser);
+
+// PUT request for /api/users/updateGameStat
+userRouter.put("/updateGameStat", updateUserNumberOfGameWon);
 
 // GET request for /api/users/leaderboard
 userRouter.get("/leaderboard", getLeaderBoardInfo);

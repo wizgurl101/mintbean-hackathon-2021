@@ -60,7 +60,7 @@ export const signUp = (username, password) => async (dispatch) => {
   const formData = new FormData();
   formData.append("username", username);
   formData.append("password", password);
-  const response = await fetch("/api/auth/signup", {
+  const response = await fetch("/api/users/signup", {
     method: "POST",
     // headers: {
     //     "Content-Type": "application/json",
