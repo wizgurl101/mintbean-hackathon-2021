@@ -20,6 +20,7 @@ const SignUpForm = () => {
     if (password === repeatPassword) {
       await dispatch(signUp(username, password));
       await dispatch(hideModal2());
+      alert("Your account has been successfully made. Please log in.")
       history.push("/");
     }
   };

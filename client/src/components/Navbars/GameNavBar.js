@@ -6,10 +6,12 @@ import SignUp from "../auth/Signup";
 import { showModal2, setCurrentModal2 } from "../../store/modal2";
 import { logout } from "../../store/session";
 import { Button } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
 
 import "./Navbar.css";
 
 function Navbar() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const showLogin = () => {
@@ -24,6 +26,7 @@ function Navbar() {
 
   const logoutUser = () => {
     dispatch(logout());
+    history.push('/');
   };
 
   return (

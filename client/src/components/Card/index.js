@@ -48,6 +48,9 @@ function Card(props) {
   }, []);
 
   const dealCards = () => {
+    console.log(deck);
+    setDealerHand([]);
+    setPlayerHand([]);
     // Assign the cards that will be handed out to the player and dealers for game to start
     let playerCard1 = deck[0];
     let dealerCard1 = deck[1];
@@ -78,8 +81,7 @@ function Card(props) {
   const gameOver = () => {
     setPlayerValue(0);
     setDealerValue(0);
-    setDealerHand([]);
-    setPlayerHand([]);
+    startSolo();
   };
 
   // removes card from deck and brings it to players card
@@ -92,6 +94,13 @@ function Card(props) {
     setDeck(temp);
     console.log(playerHand);
   };
+
+  useEffect(() => {
+    if (playerValue === 21 && dealerValue === 21) {
+      console.log("It's a tie!");
+      gameOver();
+    } 
+  }, [playerValue, dealerValue])
 
   // Will constantly keep track of dealers hand and sum up the value
   useEffect(() => {
@@ -125,12 +134,57 @@ function Card(props) {
       }
     }
     setPlayerValue(playerVal);
+
+    if (playerVal > 21) {
+      console.log("You lose!");
+      gameOver();
+    }
+
+    if (playerVal === 21) {
+      console.log("You win!");
+      gameOver();
+    }
   }, [playerHand.length]);
 
   // On a player hold we check conditionals to determine winner
   const hold = () => {
     // add in this code send player value online if they win
-    props.sendPlayerValueOnline(playerValue);
+    // props.sendPlayerValueOnline(playerValue);
+
+    let playerCopy = playerValue;
+    let dealerCopy = dealerValue;
+    let dealerHandCopy = dealerHand;
+    let deckCopy = deck;
+    
+    while (playerCopy >= dealerCopy && dealerCopy < 21) {
+      let card = deckCopy[0];
+      let temp = deckCopy.slice(1);
+      let temp2 = dealerHandCopy;
+      temp2.push(card);
+      dealerHandCopy = temp2;
+
+      let num = dealerHandCopy[dealerHandCopy.length - 1].split(".")[0];
+      if (num === "J" || num === "Q" || num === "K") {
+        dealerCopy += 10;
+      } else if (num === "A") {
+        dealerCopy += 11;
+      } else {
+        dealerCopy += Number(num);
+      }
+      
+      setDealerHand(temp2);
+      setDeck(temp);
+      console.log(dealerCopy, "dealer");
+      console.log(playerCopy, "player");
+    }
+
+    if (dealerCopy < playerCopy || dealerCopy > 21) {
+      console.log("You win!");
+      gameOver();
+    } else {
+      console.log("You lose!")
+      gameOver();
+    }
   };
 
   return (
