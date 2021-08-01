@@ -13,15 +13,11 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
 
   const onLogin = async (e) => {
-    // console.log(username)
     e.preventDefault();
-    const data = await dispatch(login(username, password));
-    if (data.errors) {
-      setErrors(data.errors);
-    } else {
-      dispatch(hideModal2());
-      history.push("/");
-    }
+    dispatch(login(username, password));
+
+    dispatch(hideModal2());
+    history.push("/");
   };
 
   const updateUsername = (e) => {
