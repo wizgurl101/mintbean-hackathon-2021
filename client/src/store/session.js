@@ -12,7 +12,7 @@ const removeUser = () => ({
   type: REMOVE_USER,
 });
 
-// thunks
+// RESTORE USER
 export const authenticate = () => async (dispatch) => {
   const response = await csrfFetch("/api/users/restore", {
     headers: {
@@ -24,11 +24,13 @@ export const authenticate = () => async (dispatch) => {
   if (data.errors) {
     return;
   }
-  dispatch(setUser(data.user.username));
+  if (data.user) {
+    dispatch(setUser(data.user.username));
+  }
 };
 
+// LOGIN USER
 export const login = (username, password) => async (dispatch) => {
-  // console.log(username, "username");
   const response = await csrfFetch("/api/users/login", {
     method: "POST",
     headers: {
@@ -43,17 +45,14 @@ export const login = (username, password) => async (dispatch) => {
   if (data.errors) {
     return data;
   }
-  dispatch(setUser(data));
-  return {};
+  dispatch(setUser(data.username));
 };
 
+// LOGOUT USER
 export const logout = () => async (dispatch) => {
-  await fetch("/api/auth/logout", {
-    headers: {
-      "Content-Type": "application/json",
-    },
+  await csrfFetch("/api/users/logout", {
+    method: "DELETE",
   });
-  // const data = await response.json();
   dispatch(removeUser());
 };
 

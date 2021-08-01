@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
+import "./board.css"
 
 function Card() {
   const [deck, setDeck] = useState([]);
@@ -109,30 +110,28 @@ function Card() {
     setDealerValue(dealerVal);
   }, [dealerHand.length]);
 
-    // Will constantly keep track players hand and sum up the value
-    useEffect(() => {
-      let playerVal = 0;
+  // Will constantly keep track players hand and sum up the value
+  useEffect(() => {
+    let playerVal = 0;
 
-      for (let i = 0; i < playerHand.length; i++) {
-        let num = playerHand[i].split(".")[0];
-        if (num === "J" || num === "Q" || num === "K") {
-          playerVal += 10;
-        } else if (num === "A") {
-          playerVal += 11;
-        } else {
-          playerVal += Number(num);
-        }
+    for (let i = 0; i < playerHand.length; i++) {
+      let num = playerHand[i].split(".")[0];
+      if (num === "J" || num === "Q" || num === "K") {
+        playerVal += 10;
+      } else if (num === "A") {
+        playerVal += 11;
+      } else {
+        playerVal += Number(num);
       }
-      setPlayerValue(playerVal);
-    }, [playerHand.length]);
+    }
+    setPlayerValue(playerVal);
+  }, [playerHand.length]);
 
   // On a player hold we check conditionals to determine winner
-  const hold = () => {
-    
-  };
+  const hold = () => {};
 
   return (
-    <div>
+    <div className="board">
       <div>
         <button onClick={hitMe}>Hit!</button>
       </div>
@@ -145,34 +144,34 @@ function Card() {
           Player: {playerValue}, Dealer: {dealerValue}
         </p>
       )}
-      {deck.length > 0 &&
-        deck.map((card) => (
-          <Grid
-            bg="#EDF2F7"
-            w="100px"
-            h="150px"
-            border="2px"
-            borderRadius="10"
-            fontSize="2xl"
-            templateRows="repeat(3, 1fr)"
-          >
-            <GridItem align="left" ml={2}>
-              {card.split(".")[0]}
-            </GridItem>
-            <GridItem align="center">{card.split(".")[1]}</GridItem>
-            <GridItem align="right" mr={2} mt={4} transform="rotateX(180deg)">
-              {card.split(".")[0]}
-            </GridItem>
-          </Grid>
-        ))}
+      <Grid
+        bg="#EDF2F7"
+        color="teal"
+        w="100px"
+        h="150px"
+        border="2px"
+        borderRadius="10"
+        fontSize="2xl"
+        templateRows="repeat(3, 1fr)"
+      >
+        <GridItem align="left" ml={2}></GridItem>
+        <GridItem align="center">Deck</GridItem>
+        <GridItem
+          align="right"
+          mr={2}
+          mt={4}
+          transform="rotateX(180deg)"
+        ></GridItem>
+      </Grid>
       <h1>Dealer Cards</h1>
       {dealerHand.length > 0 &&
         dealerHand.map((card) => (
           <Grid
             bg="#EDF2F7"
+            color="teal"
             w="100px"
             h="150px"
-            border="2px"
+            border="1px"
             borderRadius="10"
             fontSize="2xl"
             templateRows="repeat(3, 1fr)"
@@ -191,9 +190,10 @@ function Card() {
         playerHand.map((card) => (
           <Grid
             bg="#EDF2F7"
+            color="teal"
             w="100px"
             h="150px"
-            border="2px"
+            border="1px"
             borderRadius="10"
             fontSize="2xl"
             templateRows="repeat(3, 1fr)"
