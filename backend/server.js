@@ -24,12 +24,61 @@ const io = require("socket.io")(server, {
     origin: "*",
   },
 });
+// handle multiplayer
+
+// roomNumber changes to create a new room for the next two players
+let roomNumber = 1;
+
+// function to get current number of clients in a room
+const getNumberOfClients = (roomName) => {
+  return io.sockets.adapter.rooms.get(roomName).size;
+};
 
 io.on("connection", (socket) => {
-  console.log("New websocket client connection");
-
   const message = "Blackjack Server Websocket Connection";
   socket.emit("message", message);
+
+  console.log("client socket connected");
+
+  // socket.on("playerValue", (value) => {
+  //   console.log(`From client, player value is ${value}`);
+  // });
+
+  if (io.sockets.adapter.rooms.get(`room${roomNumber}`)) {
+    if (getNumberOfClients(`room${roomNumber}`) < 2) {
+      console.log(`room ${roomNumber}  less than 2 if clause`);
+      socket.join(`room${roomNumber}`);
+      io.to(`room${roomNumber}`).emit(
+        "message",
+        `new player join room #${roomNumber}`
+      );
+    } else {
+      // create new room
+      roomNumber++;
+      console.log(`room ${roomNumber}  more than 2 else clause and new room`);
+      socket.join(`room${roomNumber}`);
+      io.to(`room${roomNumber}`).emit(
+        "message",
+        `new player join room #${roomNumber}`
+      );
+    }
+  } else {
+    // create new room
+    console.log(`room ${roomNumber}  new room`);
+    socket.join(`room${roomNumber}`);
+    io.to(`room${roomNumber}`).emit(
+      "message",
+      `new player join room #${roomNumber}`
+    );
+  }
+
+  // when client disconnects
+  socket.on("disconnect", () => {
+    // send to the player that left
+    socket.emit("message", "Left BlackJack Online Room");
+    // send to the other player
+    socket.broadcast.emit("message", "The other player left the game");
+  });
 });
 
 app.use(cookieParser());
