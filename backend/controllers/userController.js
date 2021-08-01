@@ -67,6 +67,7 @@ const getLeaderBoardInfo = asyncHandler(async (req, res) => {
 
   const users = await User.find()
     .sort({ numOfGameWon: 1 })
+    .select("-password")
     .limit(NUMBER_OF_TOP_PLAYERS);
 
   if (users) {
