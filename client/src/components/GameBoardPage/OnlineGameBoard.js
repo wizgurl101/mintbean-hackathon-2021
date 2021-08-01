@@ -6,22 +6,27 @@ import { io } from "socket.io-client";
 const SERVER = "http://localhost:8000";
 
 function OnlineGameBoard() {
-  // TODO: message from socket io server, just for testing
-  const [response, setResponse] = useState("");
+  const [playerValue, setPlayerValue] = useState(0);
+
+  const getPlayerValue = (value) => {
+    setPlayerValue(value);
+    console.log("Online Board value is " + value);
+  };
 
   useEffect(() => {
     // setup socket client
     const socket = io(SERVER);
 
     socket.on("message", (message) => {
-      setResponse(message);
+      console.log(message);
     });
+
+    console.log(playerValue);
   }, []);
 
   return (
     <>
-      <GameBoard />
-      <p>Socket Server message: {response}</p>
+      <GameBoard sendPlayerValue={getPlayerValue} />
     </>
   );
 }

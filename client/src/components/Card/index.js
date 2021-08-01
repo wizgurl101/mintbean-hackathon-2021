@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
-import "./board.css"
+import "./board.css";
 
-function Card() {
+function Card(props) {
   const [deck, setDeck] = useState([]);
   const [dealerHand, setDealerHand] = useState([]);
   const [playerHand, setPlayerHand] = useState([]);
@@ -128,7 +128,10 @@ function Card() {
   }, [playerHand.length]);
 
   // On a player hold we check conditionals to determine winner
-  const hold = () => {};
+  const hold = () => {
+    // add in this code send player value online if they win
+    props.sendPlayerValueOnline(playerValue);
+  };
 
   return (
     <div className="board">
