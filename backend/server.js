@@ -59,7 +59,7 @@ io.on("connection", (socket) => {
       socket.join(`room${roomNumber}`);
       io.to(`room${roomNumber}`).emit(
         "message",
-        `new player join room #${roomNumber}`
+        `second player join room #${roomNumber}`
       );
     }
   } else {
