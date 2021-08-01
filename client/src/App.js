@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Modal from "./components/Modal/modal";
 import Modal2 from "./components/Modal/modal2";
 import GameBoard from "./components/GameBoardPage";
+import OnlineGameBoard from "./components/GameBoardPage/OnlineGameBoard";
 import Home from "./components/Homepage/Home";
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <route path="/gameboard" exact={true}>
           <GameBoard />
         </route>
+        <route path="/gameboard/online" component={OnlineGameBoard} />
       </Switch>
     </BrowserRouter>
   );
