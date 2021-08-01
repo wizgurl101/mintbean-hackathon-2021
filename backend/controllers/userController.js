@@ -65,7 +65,9 @@ const addNewUser = asyncHandler(async (req, res) => {
 const getLeaderBoardInfo = asyncHandler(async (req, res) => {
   const NUMBER_OF_TOP_PLAYERS = 10;
 
-  const users = await User.find().sort({ numOfGameWon: 1 }).limit(10);
+  const users = await User.find()
+    .sort({ numOfGameWon: 1 })
+    .limit(NUMBER_OF_TOP_PLAYERS);
 
   if (users) {
     res.json(users);
