@@ -80,8 +80,38 @@ const getLeaderBoardInfo = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * @desc Update user number of game won
+ * @route PUT /api/users/updateGameStat
+ * @access Public
+ */
+const updateUserNumberOfGameWon = asyncHandler(async (req, res) => {
+  const { username } = req.body;
+
+  const user = await User.findOne({ username });
+
+  // if user exists
+  if (user) {
+    // increment user number of game won by one
+    user.numOfGameWon = user.numOfGameWon + 1;
+
+    // save updated card
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      username: updatedUser.username,
+      numOfGameWon: updatedUser.numOfGameWon,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
 module.exports = {
   authUser: authUser,
   addNewUser: addNewUser,
   getLeaderBoardInfo: getLeaderBoardInfo,
+  updateUserNumberOfGameWon: updateUserNumberOfGameWon,
 };
