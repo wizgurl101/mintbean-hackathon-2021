@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
-const { setTokenCookie, restoreUser} = require("../utils/auth")
+const { setTokenCookie, restoreUser } = require("../utils/auth");
 
 /**
  * @desc Authorization of user login
@@ -59,4 +59,24 @@ const addNewUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { authUser: authUser, addNewUser: addNewUser };
+/**
+ *
+ */
+const getLeaderBoardInfo = asyncHandler(async (req, res) => {
+  const NUMBER_OF_TOP_PLAYERS = 10;
+
+  const users = await User.find().sort({ numOfGameWon: 1 }).limit(10);
+
+  if (users) {
+    res.json(users);
+  } else {
+    res.status(400);
+    throw new Error("No users in database");
+  }
+});
+
+module.exports = {
+  authUser: authUser,
+  addNewUser: addNewUser,
+  getLeaderBoardInfo: getLeaderBoardInfo,
+};
