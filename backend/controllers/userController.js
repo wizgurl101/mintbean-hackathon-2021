@@ -60,7 +60,9 @@ const addNewUser = asyncHandler(async (req, res) => {
 });
 
 /**
- *
+ * @desc Get leader board info
+ * @route GET /api/users/leaderboard
+ * @access Public
  */
 const getLeaderBoardInfo = asyncHandler(async (req, res) => {
   const NUMBER_OF_TOP_PLAYERS = 10;
