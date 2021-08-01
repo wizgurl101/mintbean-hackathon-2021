@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import GameBoard from "./index";
 
-// socket.io
+// socket.io-client
 import { io } from "socket.io-client";
 const SERVER = "http://localhost:8000";
 

@@ -37,7 +37,9 @@ function App() {
         <route path="/gameboard" exact={true}>
           <GameBoard />
         </route>
-        <route path="/gameboard/online" component={OnlineGameBoard} />
+        <route path="/gameboard/online">
+          <OnlineGameBoard />
+        </route>
       </Switch>
     </BrowserRouter>
   );

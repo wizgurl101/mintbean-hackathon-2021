@@ -38,6 +38,11 @@ function Navbar() {
           GameBoard
         </Button>
       </Link>
+      <Link to="gameboard/online">
+        <Button colorScheme="teal" variant="outline">
+          Play Online
+        </Button>
+      </Link>
       <div>
         {!user && (
           <div>
