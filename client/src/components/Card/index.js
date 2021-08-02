@@ -61,13 +61,8 @@ function Card() {
     setPlayingGame(true);
     setHideButton(false);
     setHide(true);
-<<<<<<< HEAD
     handleChange();
     console.log(deck);
-=======
-    setDisable(true);
-    // console.log(deck);
->>>>>>> 03af5b49e5715f907ee2f5cea7c930d7c79a0e84
     setDealerHand([]);
     setPlayerHand([]);
     // Assign the cards that will be handed out to the player and dealers for game to start
