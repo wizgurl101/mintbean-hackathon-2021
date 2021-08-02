@@ -185,7 +185,7 @@ function Card() {
     let dealerHandCopy = dealerHand;
     let deckCopy = deck;
 
-    while (playerCopy >= dealerCopy && dealerCopy < 21) {
+    while (playerCopy >= dealerCopy && dealerCopy < 20) {
       console.log("")
       let card = deckCopy[0];
       let temp = deckCopy.slice(1);
