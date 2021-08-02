@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Grid,
   GridItem,
@@ -8,6 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import "./Card.css";
+import { updateUserGameStat } from "../../store/session";
 
 function Card() {
   const [deck, setDeck] = useState([]);
@@ -23,6 +25,10 @@ function Card() {
   const [youLose, setYouLose] = useState(false);
   const [Tie, setTie] = useState(false);
   // const [winScore, setWinScore] = useState(21);
+
+  // get user from the state to update their game stat when they win
+  const user = useSelector((state) => state.session.user);
+  const dispatch = useDispatch();
 
   // On start of a solo game
   const startSolo = () => {
@@ -205,6 +211,7 @@ function Card() {
     if (dealerCopy < playerCopy || dealerCopy > 21) {
       console.log("You win!");
       setYouWin(true)
+      dispatch(updateUserGameStat(user));
       gameOver();
     } else {
       console.log("You lose!");
