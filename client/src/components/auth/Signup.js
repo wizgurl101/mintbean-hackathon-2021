@@ -20,7 +20,7 @@ const SignUpForm = () => {
     if (password === repeatPassword) {
       await dispatch(signUp(username, password));
       await dispatch(hideModal2());
-      alert("Your account has been successfully made. Please log in.")
+      alert("Your account has been successfully made. Please log in.");
       history.push("/");
     }
   };
@@ -43,11 +43,11 @@ const SignUpForm = () => {
 
   return (
     <div className="signup_form">
-      <h2>SignUp</h2>
-      <form onSubmit={onSignUp}>
+      <form className="signup" onSubmit={onSignUp}>
         <div></div>
         <div className="signup_input">
           <input
+            className="input"
             placeholder="Username"
             type="text"
             name="username"
@@ -57,6 +57,7 @@ const SignUpForm = () => {
         </div>
         <div className="signup_input">
           <input
+            className="input"
             placeholder="Password"
             type="password"
             name="password"
@@ -66,6 +67,7 @@ const SignUpForm = () => {
         </div>
         <div className="signup_input">
           <input
+            className="input"
             placeholder="Repeat Password"
             type="password"
             name="repeat_password"
@@ -75,7 +77,7 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div className="signup_input">
-          <input type="submit" value="SignUp" />
+          <input className="input2" type="submit" value="SignUp" />
         </div>
       </form>
     </div>

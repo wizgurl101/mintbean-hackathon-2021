@@ -9,6 +9,7 @@ import Modal2 from "./components/Modal/modal2";
 import GameBoard from "./components/GameBoardPage";
 import OnlineGameBoard from "./components/GameBoardPage/OnlineGameBoard";
 import Home from "./components/Homepage/Home";
+import About from "./components/About/About";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,9 +23,9 @@ function App() {
     })();
   }, [dispatch]);
 
-  // if (!loaded) {
-  //   return null;
-  // }
+  if (!loaded) {
+    return null;
+  }
 
   return (
     <BrowserRouter>
@@ -39,6 +40,9 @@ function App() {
         </route>
         <route path="/gameboard/online">
           <OnlineGameBoard />
+        </route>
+        <route path="/about" exact={true}>
+          <About />
         </route>
       </Switch>
     </BrowserRouter>
