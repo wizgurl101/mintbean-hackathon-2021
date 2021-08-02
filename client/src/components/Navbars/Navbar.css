@@ -1,7 +1,7 @@
 .Navbar {
   background-color: #452b34;
   border-bottom: 1px solid #3a1f28;
-  height: 8vh;
+  height: 10vh;
   display: flex;
   justify-content: space-between;
   padding: 0 12px;

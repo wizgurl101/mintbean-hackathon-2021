@@ -8,17 +8,18 @@
 }
 
 .developers {
-  border: 2px solid #2d7a7b;
+  border: 2px solid #c98686;
   padding: 0.9rem 1rem 0.9rem 1rem;
   border-radius: 8px;
   margin: 15px;
-  color: #2d7a7b;
+  color: white;
   transition: 0.4s ease-in-out;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: #c98686;
   font-size: 1.3rem;
   font-weight: bold;
 }
 
 .developers:hover {
-  background-color: white;
+  background-color: #ca9999;
+  border: 2px solid #ca9999;
 }

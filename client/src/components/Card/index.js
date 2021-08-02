@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, GridItem } from "@chakra-ui/react";
-import "./board.css";
+import { Grid, GridItem, Button, HStack, Container, Text } from "@chakra-ui/react";
 
 function Card() {
   const [deck, setDeck] = useState([]);
@@ -8,6 +7,8 @@ function Card() {
   const [playerHand, setPlayerHand] = useState([]);
   const [dealerValue, setDealerValue] = useState(0);
   const [playerValue, setPlayerValue] = useState(0);
+  const [disable, setDisable] = useState(false);
+  const [hide, setHide] = useState(false);
   const [winScore, setWinScore] = useState(21);
 
   // On start of a solo game
@@ -48,6 +49,8 @@ function Card() {
   }, []);
 
   const dealCards = () => {
+    setHide(true);
+    setDisable(true);
     console.log(deck);
     setDealerHand([]);
     setPlayerHand([]);
@@ -185,20 +188,20 @@ function Card() {
   };
 
   return (
-    <div className="board">
-      <div>
-        <button onClick={hitMe}>Hit!</button>
-      </div>
-      <div>
-        <button onClick={hold}>Hold</button>
-      </div>
-      <button onClick={dealCards}>Start Game</button>
+    <Container mt={16} centerContent>
+      <HStack mb={8}>
+        <Button size="lg" mr={16} disabled={disable} onClick={dealCards}>Start Game</Button>
+        <Button size="md" onClick={hitMe}>Hit!</Button>
+        <Button size="md" ml={16} onClick={hold}>Hold</Button>
+      </HStack>
+     
       {playerValue > 0 && (
-        <p>
+        <Text fontSize="xl" textColor="white">
           Player: {playerValue}, Dealer: {dealerValue}
-        </p>
+        </Text>
       )}
       <Grid
+        hidden={hide}
         bg="#EDF2F7"
         color="teal"
         w="100px"
@@ -208,14 +211,9 @@ function Card() {
         fontSize="2xl"
         templateRows="repeat(3, 1fr)"
       >
-        <GridItem align="left" ml={2}></GridItem>
+        <GridItem/>
         <GridItem align="center">Deck</GridItem>
-        <GridItem
-          align="right"
-          mr={2}
-          mt={4}
-          transform="rotateX(180deg)"
-        ></GridItem>
+        <GridItem/>
       </Grid>
       <h1>Dealer Cards</h1>
       {dealerHand.length > 0 &&
@@ -234,7 +232,7 @@ function Card() {
               {card.split(".")[0]}
             </GridItem>
             <GridItem align="center">{card.split(".")[1]}</GridItem>
-            <GridItem align="right" mr={2} mt={4} transform="rotateX(180deg)">
+            <GridItem align="left" mr={2} mt={4} transform="rotateY(180deg)">
               {card.split(".")[0]}
             </GridItem>
           </Grid>
@@ -261,7 +259,7 @@ function Card() {
             </GridItem>
           </Grid>
         ))}
-    </div>
+    </Container>
   );
 }
 

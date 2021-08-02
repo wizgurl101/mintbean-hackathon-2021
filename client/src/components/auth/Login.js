@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 import { hideModal2 } from "../../store/modal2";
+import { Button, Text } from "@chakra-ui/react"
 
 const LoginForm = () => {
   let history = useHistory();
@@ -30,7 +31,7 @@ const LoginForm = () => {
 
   if (user) {
     return <Redirect to="/" />;
-  }
+  } 
 
   return (
     <div className="login_form">
@@ -41,12 +42,13 @@ const LoginForm = () => {
               <div>{error}</div>
             ))}
           </div>
+          <Text textColor="white" noOfLines={2} maxW="75%" textAlign="center" mb={4} fontSize="xl" > Welcome back! Please add your username and password.</Text>
           <div className="login_input">
             <input
               className="input"
               name="username"
               type="text"
-              placeholder="Username"
+              placeholder=" Username"
               value={username}
               onChange={updateUsername}
             />
@@ -56,13 +58,13 @@ const LoginForm = () => {
               className="input"
               name="password"
               type="password"
-              placeholder="Password"
+              placeholder=" Password"
               value={password}
               onChange={updatePassword}
             />
           </div>
           <div className="login_input">
-            <input className="input2" type="submit" value="Login" />
+            <Button colorScheme="teal" className="input2" type="submit" value="Login">Log In</Button>
           </div>
         </form>
       </div>
