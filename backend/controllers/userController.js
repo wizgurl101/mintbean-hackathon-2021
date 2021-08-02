@@ -12,7 +12,8 @@ const authUser = asyncHandler(async (req, res) => {
 
   const validUser = await User.findOne({ username });
 
-  const validPassword = await validUser.matchPassword(password);
+  // const validPassword = await validUser.matchPassword(password);
+  const validPassword = await User.findOne({ password });
 
   // if user enter valid username and password
   if (validUser && validPassword) {
