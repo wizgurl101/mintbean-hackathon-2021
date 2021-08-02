@@ -74,7 +74,7 @@ function Card() {
     setTie(false);
     setPlayingGame(true);
     setHideButton(false);
-    // setHide(true);
+    setHide(true);
     setDisable(true);
     handleChange();
     // console.log(deck);

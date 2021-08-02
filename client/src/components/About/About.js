@@ -2,6 +2,7 @@ import React from "react";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import WebIcon from "@material-ui/icons/Web";
+import { Text } from "@chakra-ui/react";
 
 import "./About.css";
 import GameNavBar from "../Navbars/GameNavBar";
@@ -15,7 +16,7 @@ function About() {
           <span></span>
           <div className="about_content">
             <div>
-              <h1>Jairo Calderon</h1>
+              <Text fontSize="2xl">Jairo Calderon</Text>
             </div>
             <div className="about_icons">
               <a href="https://github.com/JairoCal">
@@ -34,16 +35,16 @@ function About() {
           <span></span>
           <div className="about_content">
             <div>
-              <h1>Jairo Calderon</h1>
+              <Text fontSize="2xl">Maira Garcia</Text>
             </div>
             <div className="about_icons">
-              <a href="https://github.com/JairoCal">
+              <a href="https://github.com/mairagee524">
                 <GitHubIcon />
               </a>
-              <a href="https://www.linkedin.com/in/jairo-calderon-44512ba5/">
+              <a href="https://www.linkedin.com/in/mairagarcia524/">
                 <LinkedInIcon />
               </a>
-              <a href="https://jairocal.github.io/Portfolio/">
+              <a href="https://mairagee524.github.io/portfolio/">
                 <WebIcon />
               </a>
             </div>
@@ -53,7 +54,7 @@ function About() {
           <span></span>
           <div className="about_content">
             <div>
-              <h1>Nhu Phan</h1>
+              <Text fontSize="2xl">Nhu Phan</Text>
             </div>
             <div className="about_icons">
               <a href="https://github.com/wizgurl101">
