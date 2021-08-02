@@ -28,23 +28,29 @@ function Navbar() {
 
   return (
     <div className="Navbar">
+    {!user && (
+      <div></div>
+    )}
       {user && (
         <div>
           <h1>Welcome, {user}!</h1>
-          <Link to="gameboard">
-            <Button colorScheme="teal" variant="outline">
-              GameBoard
-            </Button>
-          </Link>
-          <Link to="gameboard/online">
-            <Button colorScheme="teal" variant="outline">
-              Play Online
-            </Button>
-          </Link>
         </div>
       )}
-      
-      
+      {user && (
+        <Link to="gameboard">
+          <Button colorScheme="teal" variant="outline">
+            GameBoard
+          </Button>
+        </Link>
+      )}
+      {user && (
+        <Link to="gameboard/online">
+          <Button colorScheme="teal" variant="outline">
+            Play Online
+          </Button>
+        </Link>
+      )}
+
       <div>
         {!user && (
           <div>

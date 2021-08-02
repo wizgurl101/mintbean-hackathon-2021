@@ -10,6 +10,7 @@ function OnlineGameBoard() {
   const socket = io(SERVER);
 
   const [playerValue, setPlayerValue] = useState(0);
+  const [value, setValue] = useState(0)
 
   const getPlayerValue = (value) => {
     setPlayerValue(value);
@@ -19,7 +20,8 @@ function OnlineGameBoard() {
     socket.on("message", (message) => {
       console.log(message);
     });
-
+    
+    console.log(value, 'value')
     // socket.emit("playerValue", playerValue);
 
     // console.log("player value: " + playerValue);
