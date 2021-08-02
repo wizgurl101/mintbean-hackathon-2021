@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Grid, GridItem } from "@chakra-ui/react";
 import "./board.css";
+import { updateUserGameStat } from "../../store/session";
 
-function Card(props) {
+function Card() {
   const [deck, setDeck] = useState([]);
   const [dealerHand, setDealerHand] = useState([]);
   const [playerHand, setPlayerHand] = useState([]);
   const [dealerValue, setDealerValue] = useState(0);
   const [playerValue, setPlayerValue] = useState(0);
   const [winScore, setWinScore] = useState(21);
+
+  // variables for updating user number of game won if they win
+  const dispatch = useDispatch();
+  const username = localStorage.getItem("userInfo");
+  console.log(username);
 
   // On start of a solo game
   const startSolo = () => {
@@ -129,8 +136,7 @@ function Card(props) {
 
   // On a player hold we check conditionals to determine winner
   const hold = () => {
-    // add in this code send player value online if they win
-    props.sendPlayerValueOnline(playerValue);
+    dispatch(updateUserGameStat(username));
   };
 
   return (

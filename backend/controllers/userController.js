@@ -87,6 +87,7 @@ const getLeaderBoardInfo = asyncHandler(async (req, res) => {
  */
 const updateUserNumberOfGameWon = asyncHandler(async (req, res) => {
   const { username } = req.body;
+  console.log(username);
 
   const user = await User.findOne({ username });
 

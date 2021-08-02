@@ -8,6 +8,7 @@ import Modal from "./components/Modal/modal";
 import Modal2 from "./components/Modal/modal2";
 import GameBoard from "./components/GameBoardPage";
 import OnlineGameBoard from "./components/GameBoardPage/OnlineGameBoard";
+import LeaderBoard from './components/LeaderboardPage/index';
 import Home from "./components/Homepage/Home";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <route path="/gameboard/online">
           <OnlineGameBoard />
         </route>
+        <route path="/leaderboard" exact={true}></route>
       </Switch>
     </BrowserRouter>
   );

@@ -21,7 +21,15 @@ if (process.env.NODE_ENV === "production") {
   enhancer = composeEnhancers(applyMiddleware(thunk, logger));
 }
 
+const userInfoFromStorage = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo"))
+  : null;
+
 const configureStore = (preloadedState) => {
+  preloadedState = {
+    userLogin: { userInfo: userInfoFromStorage },
+  };
+
   return createStore(rootReducer, preloadedState, enhancer);
 };
 

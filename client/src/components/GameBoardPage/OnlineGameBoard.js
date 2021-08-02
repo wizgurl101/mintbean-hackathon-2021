@@ -11,10 +11,6 @@ function OnlineGameBoard() {
 
   const [playerValue, setPlayerValue] = useState(0);
 
-  const getPlayerValue = (value) => {
-    setPlayerValue(value);
-  };
-
   useEffect(() => {
     socket.on("message", (message) => {
       console.log(message);
@@ -27,7 +23,7 @@ function OnlineGameBoard() {
 
   return (
     <>
-      <GameBoard sendPlayerValue={getPlayerValue} />
+      <GameBoard />
     </>
   );
 }
