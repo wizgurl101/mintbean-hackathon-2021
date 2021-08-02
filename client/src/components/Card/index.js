@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Grid, GridItem, Button, HStack, Container, Text } from "@chakra-ui/react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  Grid,
+  GridItem,
+  Button,
+  HStack,
+  Container,
+  Text,
+} from "@chakra-ui/react";
+import { updateUserGameStat } from "../../store/session";
 
 function Card() {
   const [deck, setDeck] = useState([]);
@@ -10,6 +19,10 @@ function Card() {
   const [disable, setDisable] = useState(false);
   const [hide, setHide] = useState(false);
   const [winScore, setWinScore] = useState(21);
+
+  // get user from the state to update their game stat when they win
+  const user = useSelector((state) => state.session.user);
+  const dispatch = useDispatch();
 
   // On start of a solo game
   const startSolo = () => {
@@ -180,6 +193,7 @@ function Card() {
 
     if (dealerCopy < playerCopy || dealerCopy > 21) {
       console.log("You win!");
+      dispatch(updateUserGameStat(user));
       gameOver();
     } else {
       console.log("You lose!");
@@ -190,11 +204,17 @@ function Card() {
   return (
     <Container mt={16} centerContent>
       <HStack mb={8}>
-        <Button size="lg" mr={16} disabled={disable} onClick={dealCards}>Start Game</Button>
-        <Button size="md" onClick={hitMe}>Hit!</Button>
-        <Button size="md" ml={16} onClick={hold}>Hold</Button>
+        <Button size="lg" mr={16} disabled={disable} onClick={dealCards}>
+          Start Game
+        </Button>
+        <Button size="md" onClick={hitMe}>
+          Hit!
+        </Button>
+        <Button size="md" ml={16} onClick={hold}>
+          Hold
+        </Button>
       </HStack>
-     
+
       {playerValue > 0 && (
         <Text fontSize="xl" textColor="white">
           Player: {playerValue}, Dealer: {dealerValue}
@@ -211,9 +231,9 @@ function Card() {
         fontSize="2xl"
         templateRows="repeat(3, 1fr)"
       >
-        <GridItem/>
+        <GridItem />
         <GridItem align="center">Deck</GridItem>
-        <GridItem/>
+        <GridItem />
       </Grid>
       <h1>Dealer Cards</h1>
       {dealerHand.length > 0 &&
