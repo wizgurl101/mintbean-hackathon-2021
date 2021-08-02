@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Grid, GridItem, Button, HStack, Container, Text } from "@chakra-ui/react";
+import { Grid, GridItem, Button, HStack, Container, Text, Box } from "@chakra-ui/react";
+
 
 function Card() {
   const [deck, setDeck] = useState([]);
@@ -7,8 +8,13 @@ function Card() {
   const [playerHand, setPlayerHand] = useState([]);
   const [dealerValue, setDealerValue] = useState(0);
   const [playerValue, setPlayerValue] = useState(0);
-  const [disable, setDisable] = useState(false);
   const [hide, setHide] = useState(false);
+  const [isNameShown, setIsNameShown] = useState(false)
+
+  const handleChange = () => {
+    setIsNameShown(prevState => !prevState)
+  }
+
   const [winScore, setWinScore] = useState(21);
 
   // On start of a solo game
@@ -50,7 +56,7 @@ function Card() {
 
   const dealCards = () => {
     setHide(true);
-    setDisable(true);
+    handleChange();
     console.log(deck);
     setDealerHand([]);
     setPlayerHand([]);
@@ -190,20 +196,26 @@ function Card() {
   return (
     <Container mt={16} centerContent>
       <HStack mb={8}>
-        <Button size="lg" mr={16} disabled={disable} onClick={dealCards}>Start Game</Button>
-        <Button size="md" onClick={hitMe}>Hit!</Button>
-        <Button size="md" ml={16} onClick={hold}>Hold</Button>
+        <Button size="lg" hidden={hide} onClick={dealCards}>Start Game</Button>
+        {isNameShown && <Button size="md" onClick={hitMe}>Hit!</Button>}
+        {isNameShown && <Button size="md" ml={16} onClick={hold}>Hold</Button>}
       </HStack>
      
       {playerValue > 0 && (
-        <Text fontSize="xl" textColor="white">
-          Player: {playerValue}, Dealer: {dealerValue}
+        <HStack mb={10}>
+        <Text fontSize="3xl" textColor="white" mr={32}>
+          Player: {playerValue}
         </Text>
+        <Text fontSize="3xl" textColor="white" ml={32}>
+          Dealer: {dealerValue}
+        </Text>
+        </HStack>
+        
       )}
       <Grid
         hidden={hide}
-        bg="#EDF2F7"
-        color="teal"
+        bg="#a41d1d"
+        color="white"
         w="100px"
         h="150px"
         border="2px"
@@ -215,12 +227,13 @@ function Card() {
         <GridItem align="center">Deck</GridItem>
         <GridItem/>
       </Grid>
-      <h1>Dealer Cards</h1>
-      {dealerHand.length > 0 &&
-        dealerHand.map((card) => (
+      {isNameShown && <Text textColor="white" fontSize="xl">Dealer Hand</Text>}
+      <HStack mb={10}>
+        {dealerHand.length > 0 &&
+          dealerHand.map((card) => (
           <Grid
-            bg="#EDF2F7"
-            color="teal"
+            bg="white"
+            color="red"
             w="100px"
             h="150px"
             border="1px"
@@ -232,33 +245,37 @@ function Card() {
               {card.split(".")[0]}
             </GridItem>
             <GridItem align="center">{card.split(".")[1]}</GridItem>
-            <GridItem align="left" mr={2} mt={4} transform="rotateY(180deg)">
+            <GridItem align="left" mr={2} mt={4} transform="scale(-1)">
               {card.split(".")[0]}
             </GridItem>
           </Grid>
         ))}
-      <h1>Player Hand</h1>
-      {playerHand.length > 0 &&
-        playerHand.map((card) => (
-          <Grid
-            bg="#EDF2F7"
-            color="teal"
-            w="100px"
-            h="150px"
-            border="1px"
-            borderRadius="10"
-            fontSize="2xl"
-            templateRows="repeat(3, 1fr)"
-          >
-            <GridItem align="left" ml={2}>
-              {card.split(".")[0]}
-            </GridItem>
-            <GridItem align="center">{card.split(".")[1]}</GridItem>
-            <GridItem align="right" mr={2} mt={4} transform="rotateX(180deg)">
-              {card.split(".")[0]}
-            </GridItem>
-          </Grid>
-        ))}
+      </HStack>
+      {isNameShown && <Text textColor="white" fontSize="xl">Player Hand</Text>}
+      <HStack>
+        {playerHand.length > 0 &&
+          playerHand.map((card) => (
+            <Grid
+              bg="white"
+              color="black"
+              w="100px"
+              h="150px"
+              border="1px"
+              borderRadius="10"
+              fontSize="2xl"
+              templateRows="repeat(3, 1fr)"
+            >
+              <GridItem align="left" ml={2}>
+                {card.split(".")[0]}
+              </GridItem>
+              <GridItem align="center">{card.split(".")[1]}</GridItem>
+              <GridItem align="left" mr={2} mt={4} transform="scale(-1)">
+                {card.split(".")[0]}
+              </GridItem>
+            </Grid>
+          ))}
+      </HStack>
+      
     </Container>
   );
 }
