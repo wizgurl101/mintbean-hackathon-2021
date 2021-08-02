@@ -4,17 +4,12 @@ import { Box, Button, Stack } from "@chakra-ui/react";
 import "./gameboard.css";
 import GameNavBar from "../Navbars/GameNavBar";
 
-function Gameboard(props) {
-  //
-  const getPlayerValue = (value) => {
-    props.sendPlayerValue(value);
-  };
-
+function Gameboard() {
   return (
     <div className="box">
       <GameNavBar />
 
-      <Card sendPlayerValueOnline={getPlayerValue} />
+      <Card />
 
       <Stack mt={8} pacing={4}>
         <Button maxW={32} bg="#B7791F" color="#FFF" variant="solid">

@@ -8,6 +8,7 @@ import Modal from "./components/Modal/modal";
 import Modal2 from "./components/Modal/modal2";
 import GameBoard from "./components/GameBoardPage";
 import OnlineGameBoard from "./components/GameBoardPage/OnlineGameBoard";
+import Leaderboard from "./components/LeaderboardPage";
 import Home from "./components/Homepage/Home";
 import About from "./components/About/About";
 
@@ -32,18 +33,21 @@ function App() {
       <Modal />
       <Modal2 />
       <Switch>
-        <route path="/" exact={true}>
+        <Route path="/" exact={true}>
           <Home />
-        </route>
-        <route path="/gameboard" exact={true}>
+        </Route>
+        <Route path="/gameboard" exact={true}>
           <GameBoard />
-        </route>
-        <route path="/gameboard/online">
+        </Route>
+        <Route path="/gameboard/online">
           <OnlineGameBoard />
-        </route>
-        <route path="/about" exact={true}>
+        </Route>
+        <Route path="/about" exact={true}>
           <About />
-        </route>
+        </Route>
+        <Route path="/leaderboard" exact={true}>
+          <Leaderboard />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

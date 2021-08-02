@@ -9,15 +9,16 @@
 
 .developers {
   border: 2px solid #2d7a7b;
-  padding: 8px;
+  padding: 0.9rem 1rem 0.9rem 1rem;
   border-radius: 8px;
   margin: 15px;
   color: #2d7a7b;
   transition: 0.4s ease-in-out;
-  background-color: rgba(0,0,0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
 .developers:hover {
-    background-color: white;
+  background-color: white;
 }

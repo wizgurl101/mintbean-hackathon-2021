@@ -8,7 +8,7 @@ function Home() {
     <div className="main">
       <Navbar />
       <Link to="/about">
-      <button className="developers">Developers</button>
+        <button className="developers">Development Team</button>
       </Link>
     </div>
   );

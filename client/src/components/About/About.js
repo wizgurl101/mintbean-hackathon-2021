@@ -53,17 +53,14 @@ function About() {
           <span></span>
           <div className="about_content">
             <div>
-              <h1>Jairo Calderon</h1>
+              <h1>Nhu Phan</h1>
             </div>
             <div className="about_icons">
-              <a href="https://github.com/JairoCal">
+              <a href="https://github.com/wizgurl101">
                 <GitHubIcon />
               </a>
-              <a href="https://www.linkedin.com/in/jairo-calderon-44512ba5/">
+              <a href="https://www.linkedin.com/in/nhu-phan-canada/">
                 <LinkedInIcon />
-              </a>
-              <a href="https://jairocal.github.io/Portfolio/">
-                <WebIcon />
               </a>
             </div>
           </div>
