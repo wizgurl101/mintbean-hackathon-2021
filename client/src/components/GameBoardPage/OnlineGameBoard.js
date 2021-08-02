@@ -18,7 +18,6 @@ function OnlineGameBoard() {
 
   useEffect(() => {
     socket.on("message", (message) => {
-      console.log(message);
     });
     
     console.log(value, 'value')

@@ -33,7 +33,7 @@ function Navbar() {
     <div className="Navbar">
       {user && (
         <div>
-          <h1>Ready, {user}!</h1>
+          <h1>BlackJack!</h1>
         </div>
       )}
       <Link to="/">
