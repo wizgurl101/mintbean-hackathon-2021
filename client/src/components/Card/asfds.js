@@ -6,8 +6,8 @@ import {
   HStack,
   Container,
   Text,
-  Box,
 } from "@chakra-ui/react";
+import "./Card.css";
 
 function Card() {
   const [deck, setDeck] = useState([]);
@@ -15,21 +15,16 @@ function Card() {
   const [playerHand, setPlayerHand] = useState([]);
   const [dealerValue, setDealerValue] = useState(0);
   const [playerValue, setPlayerValue] = useState(0);
-  const [hide, setHide] = useState(false);
-  const [isNameShown, setIsNameShown] = useState(false);
-
   const [disable, setDisable] = useState(false);
+  const [hide, setHide] = useState(false);
+  
   const [playingGame, setPlayingGame] = useState(false);
   const [hideButton, setHideButton] = useState(true);
   const [youWin, setYouWin] = useState(false);
   const [youLose, setYouLose] = useState(false);
   const [Tie, setTie] = useState(false);
 
-  const handleChange = () => {
-    setIsNameShown((prevState) => !prevState);
-  };
-
-  const [winScore, setWinScore] = useState(21);
+  // const [winScore, setWinScore] = useState(21);
 
   // On start of a solo game
   const startSolo = () => {
@@ -74,9 +69,8 @@ function Card() {
     setTie(false);
     setPlayingGame(true);
     setHideButton(false);
-    // setHide(true);
+    setHide(true);
     setDisable(true);
-    handleChange();
     // console.log(deck);
     setDealerHand([]);
     setPlayerHand([]);
@@ -130,6 +124,7 @@ function Card() {
   useEffect(() => {
     if (playerValue === 21 && dealerValue === 21) {
       console.log("It's a tie!");
+      setTie(true);
       gameOver();
     }
   }, [playerValue, dealerValue]);
@@ -169,11 +164,13 @@ function Card() {
 
     if (playerVal > 21) {
       console.log("You lose!");
+      setYouLose(true);
       gameOver();
     }
 
     if (playerVal === 21) {
       console.log("You win!");
+      setYouWin(true);
       gameOver();
     }
   }, [playerHand.length, playingGame]);
@@ -186,7 +183,6 @@ function Card() {
     let deckCopy = deck;
 
     while (playerCopy >= dealerCopy && dealerCopy < 21) {
-      console.log("")
       let card = deckCopy[0];
       let temp = deckCopy.slice(1);
       let temp2 = dealerHandCopy;
@@ -202,7 +198,6 @@ function Card() {
         dealerCopy += Number(num);
       }
 
-      deckCopy = temp
       setDealerHand(temp2);
       setDeck(temp);
       console.log(dealerCopy, "dealer");
@@ -211,9 +206,11 @@ function Card() {
 
     if (dealerCopy < playerCopy || dealerCopy > 21) {
       console.log("You win!");
+      setYouWin(true);
       gameOver();
     } else {
       console.log("You lose!");
+      setYouLose(true);
       gameOver();
     }
   };
@@ -221,35 +218,26 @@ function Card() {
   return (
     <Container mt={16} centerContent>
       <HStack mb={8}>
-        <Button size="lg" disabled={disable} onClick={dealCards}>
+        <Button size="lg" mr={16} disabled={disable} onClick={dealCards}>
           Start Game
         </Button>
-        
-          <Button disabled={hideButton} size="md" onClick={hitMe}>
-            Hit!
-          </Button>
-        
-        
-          <Button disabled={hideButton} size="md" ml={16} onClick={hold}>
-            Hold
-          </Button>
-       
+        <Button disabled={hideButton} size="md" onClick={hitMe}>
+          Hit!
+        </Button>
+        <Button disabled={hideButton} size="md" ml={16} onClick={hold}>
+          Hold
+        </Button>
       </HStack>
 
       {playerValue > 0 && (
-        <HStack mb={10}>
-          <Text fontSize="3xl" textColor="white" mr={32}>
-            Player: {playerValue}
-          </Text>
-          <Text fontSize="3xl" textColor="white" ml={32}>
-            Dealer: {dealerValue}
-          </Text>
-        </HStack>
+        <Text fontSize="xl" textColor="white">
+          Player: {playerValue}, Dealer: {dealerValue}
+        </Text>
       )}
       <Grid
         hidden={hide}
-        bg="#a41d1d"
-        color="white"
+        bg="#EDF2F7"
+        color="teal"
         w="100px"
         h="150px"
         border="2px"
@@ -261,17 +249,13 @@ function Card() {
         <GridItem align="center">Deck</GridItem>
         <GridItem />
       </Grid>
-      {isNameShown && (
-        <Text textColor="white" fontSize="xl">
-          Dealer Hand
-        </Text>
-      )}
-      <HStack mb={10}>
+      <h1 className="player_description">Dealer Cards</h1>
+      <div className="card_display">
         {dealerHand.length > 0 &&
           dealerHand.map((card) => (
             <Grid
-              bg="white"
-              color="red"
+              bg="#EDF2F7"
+              color="teal"
               w="100px"
               h="150px"
               border="1px"
@@ -283,23 +267,19 @@ function Card() {
                 {card.split(".")[0]}
               </GridItem>
               <GridItem align="center">{card.split(".")[1]}</GridItem>
-              <GridItem align="left" mr={2} mt={4} transform="scale(-1)">
+              <GridItem align="left" mr={2} mt={4} transform="rotateY(180deg)">
                 {card.split(".")[0]}
               </GridItem>
             </Grid>
           ))}
-      </HStack>
-      {isNameShown && (
-        <Text textColor="white" fontSize="xl">
-          Player Hand
-        </Text>
-      )}
-      <HStack>
+      </div>
+      <h1 className="player_description">Player Hand</h1>
+      <div className="card_display">
         {playerHand.length > 0 &&
           playerHand.map((card) => (
             <Grid
-              bg="white"
-              color="black"
+              bg="#EDF2F7"
+              color="teal"
               w="100px"
               h="150px"
               border="1px"
@@ -311,12 +291,17 @@ function Card() {
                 {card.split(".")[0]}
               </GridItem>
               <GridItem align="center">{card.split(".")[1]}</GridItem>
-              <GridItem align="left" mr={2} mt={4} transform="scale(-1)">
+              <GridItem align="right" mr={2} mt={4} transform="rotateX(180deg)">
                 {card.split(".")[0]}
               </GridItem>
             </Grid>
           ))}
-      </HStack>
+      </div>
+      <div className="status_text">
+        {youWin && <h1 disabled={youWin}>You Win!</h1>}
+        {youLose && <h1 disabled={youLose}>You Lose!</h1>}
+        {Tie && <h1 disabled={Tie}>Tie!</h1>}
+      </div>
     </Container>
   );
 }
