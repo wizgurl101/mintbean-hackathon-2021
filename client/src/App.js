@@ -8,9 +8,9 @@ import Modal from "./components/Modal/modal";
 import Modal2 from "./components/Modal/modal2";
 import GameBoard from "./components/GameBoardPage";
 import OnlineGameBoard from "./components/GameBoardPage/OnlineGameBoard";
-import Leaderboard from "./components/LeaderboardPage";
 import Home from "./components/Homepage/Home";
 import About from "./components/About/About";
+import LeaderBoard from "./components/LeaderboardPage/index";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,7 +46,7 @@ function App() {
           <About />
         </Route>
         <Route path="/leaderboard" exact={true}>
-          <Leaderboard />
+          <LeaderBoard />
         </Route>
       </Switch>
     </BrowserRouter>

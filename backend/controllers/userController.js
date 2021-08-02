@@ -86,17 +86,16 @@ const getLeaderBoardInfo = asyncHandler(async (req, res) => {
  * @access Public
  */
 const updateUserNumberOfGameWon = asyncHandler(async (req, res) => {
-  const { username } = req.body;
-
-  const user = await User.findOne({ username });
+  const username = req.body.user;
+  const foundUser = await User.findOne({ username });
 
   // if user exists
-  if (user) {
+  if (foundUser) {
     // increment user number of game won by one
-    user.numOfGameWon = user.numOfGameWon + 1;
+    foundUser.numOfGameWon = foundUser.numOfGameWon + 1;
 
     // save updated card
-    const updatedUser = await user.save();
+    const updatedUser = await foundUser.save();
 
     res.json({
       _id: updatedUser._id,
