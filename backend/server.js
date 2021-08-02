@@ -1,13 +1,13 @@
+const path = require("path");
 const express = require("express");
-const http = require("http");
 const dotenv = require("dotenv");
 
 const cookieParser = require("cookie-parser");
 const csurf = require("csurf");
 const { environment } = require("./config");
-const isProduction = environment === "production";
+const isProduction = process.env.NODE_ENV === "production";
 
-const PORT = 8000;
+const PORT = process.env.PORT || 3000;
 const connectToDatabase = require("./config/databaseConfig");
 const userRouter = require("./routes/userRoutes");
 
@@ -22,22 +22,31 @@ const app = express();
 app.use(cookieParser());
 // accept incoming request object to server as JSON
 app.use(express.json());
-``;
-// server.use(
-//   csurf({
-//     cookie: {
-//       secure: isProduction,
-//       sameSite: isProduction && "Lax",
-//       httpOnly: true,
-//     },
-//   })
-// );
-app.get("/", (req, res) => {
-  res.send("Server is running...");
-});
+
+app.use(
+  csurf({
+    cookie: {
+      secure: isProduction,
+      sameSite: isProduction && "Lax",
+      httpOnly: true,
+    },
+  })
+);
 
 // mount the route(s)
 app.use("/api/users", userRouter);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/client/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.send("Server is running....");
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);
