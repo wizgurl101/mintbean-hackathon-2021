@@ -1,0 +1,16 @@
+.player_description {
+  color: white;
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.card_display {
+  display: flex;
+}
+
+.status_text {
+  color: white;
+  font-weight: bold;
+  margin-top: 100px;
+  font-size: 60px;
+}

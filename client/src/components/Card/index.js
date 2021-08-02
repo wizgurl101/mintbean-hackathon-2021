@@ -52,12 +52,22 @@ function Card() {
   // Will trigger deck to be made upon loading into the page
   useEffect(() => {
     startSolo();
-  }, []);
+  }, [playingGame]);
 
   const dealCards = () => {
+    setYouWin(false);
+    setYouLose(false);
+    setTie(false);
+    setPlayingGame(true);
+    setHideButton(false);
     setHide(true);
+<<<<<<< HEAD
     handleChange();
     console.log(deck);
+=======
+    setDisable(true);
+    // console.log(deck);
+>>>>>>> 03af5b49e5715f907ee2f5cea7c930d7c79a0e84
     setDealerHand([]);
     setPlayerHand([]);
     // Assign the cards that will be handed out to the player and dealers for game to start
@@ -90,7 +100,10 @@ function Card() {
   const gameOver = () => {
     setPlayerValue(0);
     setDealerValue(0);
-    startSolo();
+    // startSolo();
+    setHideButton(true);
+    setDisable(false);
+    setPlayingGame(false);
   };
 
   // removes card from deck and brings it to players card
@@ -107,6 +120,7 @@ function Card() {
   useEffect(() => {
     if (playerValue === 21 && dealerValue === 21) {
       console.log("It's a tie!");
+      setTie(true);
       gameOver();
     }
   }, [playerValue, dealerValue]);
@@ -126,7 +140,7 @@ function Card() {
       }
     }
     setDealerValue(dealerVal);
-  }, [dealerHand.length]);
+  }, [dealerHand.length, playingGame]);
 
   // Will constantly keep track players hand and sum up the value
   useEffect(() => {
@@ -146,14 +160,16 @@ function Card() {
 
     if (playerVal > 21) {
       console.log("You lose!");
+      setYouLose(true);
       gameOver();
     }
 
     if (playerVal === 21) {
       console.log("You win!");
+      setYouWin(true);
       gameOver();
     }
-  }, [playerHand.length]);
+  }, [playerHand.length, playingGame]);
 
   // On a player hold we check conditionals to determine winner
   const hold = () => {
@@ -186,9 +202,12 @@ function Card() {
 
     if (dealerCopy < playerCopy || dealerCopy > 21) {
       console.log("You win!");
+      setYouWin(true)
+      dispatch(updateUserGameStat(user));
       gameOver();
     } else {
       console.log("You lose!");
+      setYouLose(true)
       gameOver();
     }
   };
@@ -200,7 +219,7 @@ function Card() {
         {isNameShown && <Button size="md" onClick={hitMe}>Hit!</Button>}
         {isNameShown && <Button size="md" ml={16} onClick={hold}>Hold</Button>}
       </HStack>
-     
+
       {playerValue > 0 && (
         <HStack mb={10}>
         <Text fontSize="3xl" textColor="white" mr={32}>
@@ -223,9 +242,9 @@ function Card() {
         fontSize="2xl"
         templateRows="repeat(3, 1fr)"
       >
-        <GridItem/>
+        <GridItem />
         <GridItem align="center">Deck</GridItem>
-        <GridItem/>
+        <GridItem />
       </Grid>
       {isNameShown && <Text textColor="white" fontSize="xl">Dealer Hand</Text>}
       <HStack mb={10}>
