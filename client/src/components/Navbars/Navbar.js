@@ -5,7 +5,7 @@ import Login from "../auth/Login";
 import SignUp from "../auth/Signup";
 import { showModal2, setCurrentModal2 } from "../../store/modal2";
 import { logout } from "../../store/session";
-import { Button } from "@chakra-ui/react";
+import { Button, Stack } from "@chakra-ui/react";
 
 import "./Navbar.css";
 
@@ -28,35 +28,50 @@ function Navbar() {
 
   return (
     <div className="Navbar">
-    {!user && (
-      <div></div>
-    )}
+      {!user && <div></div>}
       {user && (
         <div>
           <h1>Welcome, {user}!</h1>
         </div>
       )}
       {user && (
-        <Link to="gameboard">
-          <Button colorScheme="teal" variant="outline">
-            GameBoard
-          </Button>
-        </Link>
+        <Stack direction="row" spacing={3}>
+          <Link to="gameboard">
+            <Button colorScheme="teal" variant="outline" size="md">
+              Game Board
+            </Button>
+          </Link>
+          <Link to="leaderboard">
+            <Button colorScheme="teal" variant="outline" size="md">
+              Leader Board
+            </Button>
+          </Link>
+        </Stack>
       )}
 
       <div>
         {!user && (
-          <div>
+          <Stack direction="row" spacing={3}>
             <Button colorScheme="teal" onClick={showLogin}>
               Login
             </Button>
-            <Button colorScheme="teal" variant="outline" onClick={showSignup}>
+            <Button
+              colorScheme="teal"
+              variant="outline"
+              size="md"
+              onClick={showSignup}
+            >
               Signup
             </Button>
-          </div>
+          </Stack>
         )}
         {user && (
-          <Button colorScheme="teal" variant="outline" onClick={logoutUser}>
+          <Button
+            colorScheme="teal"
+            variant="outline"
+            size="md"
+            onClick={logoutUser}
+          >
             Logout
           </Button>
         )}

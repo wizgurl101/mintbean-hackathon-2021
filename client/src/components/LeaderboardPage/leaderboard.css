@@ -1,0 +1,23 @@
+.container {
+  background-color: #edf2f7;
+  border-radius: 1rem;
+  margin-top: 2rem;
+  padding: 1rem 2rem 3rem 2rem !important;
+}
+
+.caption {
+  font-size: 2rem !important;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.tableHeader > * {
+  background-color: #1d4044;
+  color: white !important;
+  font-size: 1rem !important;
+}
+
+.tablebody {
+  color: rgb(49, 49, 49);
+  font-size: 1.3rem !important;
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import "./board.css";
 
-function Card(props) {
+function Card() {
   const [deck, setDeck] = useState([]);
   const [dealerHand, setDealerHand] = useState([]);
   const [playerHand, setPlayerHand] = useState([]);
@@ -99,8 +99,8 @@ function Card(props) {
     if (playerValue === 21 && dealerValue === 21) {
       console.log("It's a tie!");
       gameOver();
-    } 
-  }, [playerValue, dealerValue])
+    }
+  }, [playerValue, dealerValue]);
 
   // Will constantly keep track of dealers hand and sum up the value
   useEffect(() => {
@@ -148,14 +148,11 @@ function Card(props) {
 
   // On a player hold we check conditionals to determine winner
   const hold = () => {
-    // add in this code send player value online if they win
-    // props.sendPlayerValueOnline(playerValue);
-
     let playerCopy = playerValue;
     let dealerCopy = dealerValue;
     let dealerHandCopy = dealerHand;
     let deckCopy = deck;
-    
+
     while (playerCopy >= dealerCopy && dealerCopy < 21) {
       let card = deckCopy[0];
       let temp = deckCopy.slice(1);
@@ -171,7 +168,7 @@ function Card(props) {
       } else {
         dealerCopy += Number(num);
       }
-      
+
       setDealerHand(temp2);
       setDeck(temp);
       console.log(dealerCopy, "dealer");
@@ -182,7 +179,7 @@ function Card(props) {
       console.log("You win!");
       gameOver();
     } else {
-      console.log("You lose!")
+      console.log("You lose!");
       gameOver();
     }
   };
