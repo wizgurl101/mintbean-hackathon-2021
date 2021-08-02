@@ -1,0 +1,37 @@
+.login_form,
+.signup_form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: black;
+  font-weight: bold;
+}
+
+.login,
+.signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_input,
+.signup_input {
+  padding: 10px;
+}
+
+.input {
+  border-radius: 15px;
+  padding: 5px;
+  outline: none;
+}
+
+.input2 {
+  border-radius: 15px;
+  padding: 5px 15px;
+}
+
+.input2:hover {
+  cursor: pointer;
+}

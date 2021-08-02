@@ -34,35 +34,38 @@ const LoginForm = () => {
 
   return (
     <div className="login_form">
-      <h2>Login</h2>
-      <form onSubmit={onLogin}>
-        <div>
-          {errors.map((error) => (
-            <div>{error}</div>
-          ))}
-        </div>
-        <div className="login_input">
-          <input
-            name="username"
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={updateUsername}
-          />
-        </div>
-        <div className="login_input">
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={updatePassword}
-          />
-          <div className="login_input">
-            <input type="submit" value="Login" />
+      <div>
+        <form className="login" onSubmit={onLogin}>
+          <div>
+            {errors.map((error) => (
+              <div>{error}</div>
+            ))}
           </div>
-        </div>
-      </form>
+          <div className="login_input">
+            <input
+              className="input"
+              name="username"
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={updateUsername}
+            />
+          </div>
+          <div className="login_input">
+            <input
+              className="input"
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={updatePassword}
+            />
+          </div>
+          <div className="login_input">
+            <input className="input2" type="submit" value="Login" />
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
