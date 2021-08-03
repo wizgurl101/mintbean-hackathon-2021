@@ -23,3 +23,19 @@
   background-color: #ca9999;
   border: 2px solid #ca9999;
 }
+
+.devicon-react-original-wordmark,
+.devicon-redux-original,
+.devicon-mongodb-plain-wordmark,
+.devicon-express-original-wordmark,
+.devicon-nodejs-plain-wordmark {
+  font-size: 3rem;
+}
+
+.footer {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  justify-content: space-around;
+  width: 100vw;
+}
