@@ -3,11 +3,13 @@ import thunk from "redux-thunk";
 import session from "./session";
 import modal from "./modal";
 import modal2 from "./modal2";
+import leaderboard from "./leaderboard";
 
 const rootReducer = combineReducers({
   session,
   modal,
   modal2,
+  leaderboard,
 });
 
 let enhancer;

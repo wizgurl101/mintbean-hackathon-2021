@@ -31,7 +31,9 @@ function Navbar() {
       {!user && <div></div>}
       {user && (
         <div>
-          <Text textColor="white" fontSize="lg">Welcome, {user}!</Text>
+          <Text textColor="white" fontSize="lg">
+            Welcome, {user}!
+          </Text>
         </div>
       )}
       {user && (
@@ -55,21 +57,13 @@ function Navbar() {
             <Button colorScheme="teal" onClick={showLogin}>
               Login
             </Button>
-            <Button
-              colorScheme="teal"
-              size="md"
-              onClick={showSignup}
-            >
+            <Button colorScheme="teal" size="md" onClick={showSignup}>
               Signup
             </Button>
           </Stack>
         )}
         {user && (
-          <Button
-            colorScheme="gray"
-            size="md"
-            onClick={logoutUser}
-          >
+          <Button colorScheme="gray" size="md" onClick={logoutUser}>
             Logout
           </Button>
         )}

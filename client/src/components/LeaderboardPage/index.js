@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import "./leaderboard.css";
 import GameNavBar from "../Navbars/GameNavBar";
-import { getLeaderBoardInfo } from "../../store/session";
+import { getLeaderBoardInfo } from "../../store/leaderboard";
 
 function Leaderboard() {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ function Leaderboard() {
     setLoading(false);
   }, [dispatch]);
 
-  const users = useSelector((state) => state.session.users);
+  const users = useSelector((state) => state.leaderboard.users);
 
   return (
     <div className="box">
