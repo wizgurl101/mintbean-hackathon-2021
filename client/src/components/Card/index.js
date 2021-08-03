@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useDisclosure } from "@chakra-ui/react"
+
 import {
   Grid,
   GridItem,
@@ -6,7 +8,14 @@ import {
   HStack,
   Container,
   Text,
-  Box,
+  Center,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 
 function Card() {
@@ -17,10 +26,10 @@ function Card() {
   const [playerValue, setPlayerValue] = useState(0);
   const [hide, setHide] = useState(false);
   const [isNameShown, setIsNameShown] = useState(false);
-
   const [disable, setDisable] = useState(false);
   const [playingGame, setPlayingGame] = useState(false);
   const [hideButton, setHideButton] = useState(true);
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const [youWin, setYouWin] = useState(false);
   const [youLose, setYouLose] = useState(false);
   const [Tie, setTie] = useState(false);
@@ -33,6 +42,8 @@ function Card() {
 
   // On start of a solo game
   const startSolo = () => {
+    setPlayerValue(0);
+    setDealerValue(0);
     // J,Q,K = 10 & A = 11 OR 1
     let tempDeck = [];
     let cardVal = [
@@ -69,6 +80,7 @@ function Card() {
   }, [playingGame]);
 
   const dealCards = () => {
+    // onOpen()
     setYouWin(false);
     setYouLose(false);
     setTie(false);
@@ -108,13 +120,20 @@ function Card() {
 
   // GameOver resets all values (function is called when round is over)
   const gameOver = () => {
-    setPlayerValue(0);
-    setDealerValue(0);
+    onOpen();
+    // setPlayerValue(0);
+    // setDealerValue(0);
     // startSolo();
     setHideButton(true);
     setDisable(false);
     setPlayingGame(false);
   };
+
+  const clearScore = () => {
+    setPlayerValue(0);
+    setDealerValue(0);
+    onClose()
+  }
 
   // removes card from deck and brings it to players card
   const hitMe = () => {
@@ -130,6 +149,9 @@ function Card() {
   useEffect(() => {
     if (playerValue === 21 && dealerValue === 21) {
       console.log("It's a tie!");
+      setYouWin(false);
+      setYouLose(false);
+      setTie(true);
       gameOver();
     }
   }, [playerValue, dealerValue]);
@@ -169,11 +191,13 @@ function Card() {
 
     if (playerVal > 21) {
       console.log("You lose!");
+      setYouLose(true);
       gameOver();
     }
 
     if (playerVal === 21) {
       console.log("You win!");
+      setYouWin(true);
       gameOver();
     }
   }, [playerHand.length, playingGame]);
@@ -211,9 +235,11 @@ function Card() {
 
     if (dealerCopy < playerCopy || dealerCopy > 21) {
       console.log("You win!");
+      setYouWin(true)
       gameOver();
     } else {
       console.log("You lose!");
+      setYouLose(true)
       gameOver();
     }
   };
@@ -221,19 +247,15 @@ function Card() {
   return (
     <Container mt={16} centerContent>
       <HStack mb={8}>
-        <Button size="lg" disabled={disable} onClick={dealCards}>
+        <Button colorScheme="teal" size="lg" disabled={disable} onClick={dealCards}>
           Start Game
         </Button>
-        
-          <Button disabled={hideButton} size="md" onClick={hitMe}>
-            Hit!
-          </Button>
-        
-        
-          <Button disabled={hideButton} size="md" ml={16} onClick={hold}>
-            Hold
-          </Button>
-       
+        <Button colorScheme="purple" size="md" disabled={hideButton} size="md" onClick={hitMe}>
+          Hit!
+        </Button>    
+        <Button colorScheme="purple" size="md" disabled={hideButton} size="md" ml={16} onClick={hold}>
+          Hold
+        </Button>   
       </HStack>
 
       {playerValue > 0 && (
@@ -317,6 +339,36 @@ function Card() {
             </Grid>
           ))}
       </HStack>
+
+      
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader/>
+          <ModalCloseButton />
+          <ModalBody>
+          <Center mb={4}>
+              <Text noOfLines={2}>Player's Score: {playerValue} vs Dealer's Score: {dealerValue}</Text>
+            </Center>
+           {youWin && (
+            <Text> You win!! Go and boast about you being smart! Press on 'Start Game' to play another round!</Text>
+           )} 
+           {youLose && (
+            <Text> Womp, womp, you lost. Practice some more! Press on 'Start Game' to play another round!</Text>
+           )} 
+           {Tie && (
+            <Text> It's a tie! Press on 'Start Game' to play another round!</Text>
+           )} 
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="teal" mr={3} onClick={clearScore}>
+              Okay
+            </Button>
+            {/* <Button variant="ghost">Secondary Action</Button> */}
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Container>
   );
 }
