@@ -8,19 +8,12 @@
 
 - [Introduction](#introduction)
 - [Features](#features)
-- [Built With](#built-with)
 - [Developers](#contributors)
 - [Screenshots](#screenshots)
 
 ## Introduction
 
-This was a collaborative project where the team implemented an online black jack game for Mintbean's hackathon 2021.
-
-## Features
-
-- Create an account to keep track of game won
-- Play a game against an AI
-- Display a leader board of the top 10 players
+This was a collaborative project implemented for the Mintbean's Hackathon 2021.  The project was to implement a full stack web application to allow users to play a game of black jack against an AI.  
 
 ### Built With
 
@@ -28,6 +21,12 @@ This was a collaborative project where the team implemented an online black jack
 - Express
 - React
 - MongoDB
+
+## Features
+
+- Create an account to keep track of game won
+- Play a game against an AI
+- Display a leader board of the top 10 players
 
 ## Developers
 
