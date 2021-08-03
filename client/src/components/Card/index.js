@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDisclosure } from "@chakra-ui/react"
+import { useDisclosure } from "@chakra-ui/react";
 
 import {
   Grid,
@@ -17,6 +17,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
+import { updateUserGameStat } from "../../store/session";
 
 function Card() {
   const [deck, setDeck] = useState([]);
@@ -29,7 +30,7 @@ function Card() {
   const [disable, setDisable] = useState(false);
   const [playingGame, setPlayingGame] = useState(false);
   const [hideButton, setHideButton] = useState(true);
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [youWin, setYouWin] = useState(false);
   const [youLose, setYouLose] = useState(false);
   const [Tie, setTie] = useState(false);
@@ -38,7 +39,9 @@ function Card() {
     setIsNameShown((prevState) => !prevState);
   };
 
-  const [winScore, setWinScore] = useState(21);
+  // get user from the state to update their game stat when they win
+  const user = useSelector((state) => state.session.user);
+  const dispatch = useDispatch();
 
   // On start of a solo game
   const startSolo = () => {
@@ -89,7 +92,6 @@ function Card() {
     setHide(true);
     setDisable(true);
     handleChange();
-    // console.log(deck);
     setDealerHand([]);
     setPlayerHand([]);
     // Assign the cards that will be handed out to the player and dealers for game to start
@@ -132,8 +134,8 @@ function Card() {
   const clearScore = () => {
     setPlayerValue(0);
     setDealerValue(0);
-    onClose()
-  }
+    onClose();
+  };
 
   // removes card from deck and brings it to players card
   const hitMe = () => {
@@ -143,7 +145,6 @@ function Card() {
     temp2.push(card);
     setPlayerHand(temp2);
     setDeck(temp);
-    console.log(playerHand);
   };
 
   useEffect(() => {
@@ -190,13 +191,11 @@ function Card() {
     setPlayerValue(playerVal);
 
     if (playerVal > 21) {
-      console.log("You lose!");
       setYouLose(true);
       gameOver();
     }
 
     if (playerVal === 21) {
-      console.log("You win!");
       setYouWin(true);
       gameOver();
     }
@@ -210,7 +209,6 @@ function Card() {
     let deckCopy = deck;
 
     while (playerCopy >= dealerCopy && dealerCopy < 20) {
-      console.log("")
       let card = deckCopy[0];
       let temp = deckCopy.slice(1);
       let temp2 = dealerHandCopy;
@@ -226,20 +224,17 @@ function Card() {
         dealerCopy += Number(num);
       }
 
-      deckCopy = temp
+      deckCopy = temp;
       setDealerHand(temp2);
       setDeck(temp);
-      console.log(dealerCopy, "dealer");
-      console.log(playerCopy, "player");
     }
 
     if (dealerCopy < playerCopy || dealerCopy > 21) {
-      console.log("You win!");
-      setYouWin(true)
+      dispatch(updateUserGameStat(user));
+      setYouWin(true);
       gameOver();
     } else {
-      console.log("You lose!");
-      setYouLose(true)
+      setYouLose(true);
       gameOver();
     }
   };
@@ -247,15 +242,33 @@ function Card() {
   return (
     <Container mt={16} centerContent>
       <HStack mb={8}>
-        <Button colorScheme="teal" size="lg" disabled={disable} onClick={dealCards}>
+        <Button
+          colorScheme="teal"
+          size="lg"
+          disabled={disable}
+          onClick={dealCards}
+        >
           Start Game
         </Button>
-        <Button colorScheme="purple" size="md" disabled={hideButton} size="md" onClick={hitMe}>
+        <Button
+          colorScheme="purple"
+          size="md"
+          disabled={hideButton}
+          size="md"
+          onClick={hitMe}
+        >
           Hit!
-        </Button>    
-        <Button colorScheme="purple" size="md" disabled={hideButton} size="md" ml={16} onClick={hold}>
+        </Button>
+        <Button
+          colorScheme="purple"
+          size="md"
+          disabled={hideButton}
+          size="md"
+          ml={16}
+          onClick={hold}
+        >
           Hold
-        </Button>   
+        </Button>
       </HStack>
 
       {playerValue > 0 && (
@@ -340,26 +353,37 @@ function Card() {
           ))}
       </HStack>
 
-      
-
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader/>
+          <ModalHeader />
           <ModalCloseButton />
           <ModalBody>
-          <Center mb={4}>
-              <Text noOfLines={2}>Player's Score: {playerValue} vs Dealer's Score: {dealerValue}</Text>
+            <Center mb={4}>
+              <Text noOfLines={2}>
+                Player's Score: {playerValue} vs Dealer's Score: {dealerValue}
+              </Text>
             </Center>
-           {youWin && (
-            <Text> You win!! Go and boast about you being smart! Press on 'Start Game' to play another round!</Text>
-           )} 
-           {youLose && (
-            <Text> Womp, womp, you lost. Practice some more! Press on 'Start Game' to play another round!</Text>
-           )} 
-           {Tie && (
-            <Text> It's a tie! Press on 'Start Game' to play another round!</Text>
-           )} 
+            {youWin && (
+              <Text>
+                {" "}
+                You win!! Go and boast about you being smart! Press on 'Start
+                Game' to play another round!
+              </Text>
+            )}
+            {youLose && (
+              <Text>
+                {" "}
+                Womp, womp, you lost. Practice some more! Press on 'Start Game'
+                to play another round!
+              </Text>
+            )}
+            {Tie && (
+              <Text>
+                {" "}
+                It's a tie! Press on 'Start Game' to play another round!
+              </Text>
+            )}
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="teal" mr={3} onClick={clearScore}>
