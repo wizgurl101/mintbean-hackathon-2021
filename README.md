@@ -34,7 +34,7 @@ This was a collaborative project implemented for the Mintbean's Hackathon 2021. 
 - Maira Garcia - [@linkedln](https://www.linkedin.com/in/mairagarcia524/)
 - Nhu Phan - [@linkedln](https://www.linkedin.com/in/nhu-phan-canada/)
 
-### Screenshots
+## Screenshots
 
 <p align="center">
 <img src="./screenshots/landingpage.jpg" width="70%">
