@@ -1,3 +1,10 @@
-# mintbean-hackathon-2021
+# Black Jack Game
 
-Favicon Image by <a href="https://pixabay.com/users/openicons-28911/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=98382">OpenIcons</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=98382">Pixabay</a>
+## About The Project
+
+### Built With
+
+## Contact
+* Name - [@linkedln](https://twitter.com/your_username) 
+* Name - [@linkedln](https://twitter.com/your_username) 
+* Name - [@linkedln](https://twitter.com/your_username) 
