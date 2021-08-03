@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="./client/public/cards.png" alt="Mintbean Hackathon Blackjack Game" width="50%">
+  <img src="./client/public/cards.png" alt="Mintbean Hackathon Blackjack Game" width="36%">
   <br>
   Mintbean Hackathon: Black Jack Game
 </h1>
