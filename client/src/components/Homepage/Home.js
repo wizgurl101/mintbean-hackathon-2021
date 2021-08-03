@@ -12,19 +12,19 @@ function Home() {
       </Link>
       <div className="footer">
         <div>
-          <i class="devicon-react-original-wordmark colored"></i>
+          <i className="devicon-react-original-wordmark colored"></i>
         </div>
         <div>
-          <i class="devicon-redux-original colored"></i>
+          <i className="devicon-redux-original colored"></i>
         </div>
         <div>
-          <i class="devicon-mongodb-plain-wordmark colored"></i>
+          <i className="devicon-mongodb-plain-wordmark colored"></i>
         </div>
         <div>
-          <i class="devicon-express-original-wordmark colored"></i>
+          <i className="devicon-express-original-wordmark colored"></i>
         </div>
         <div>
-          <i class="devicon-nodejs-plain-wordmark colored"></i>
+          <i className="devicon-nodejs-plain-wordmark colored"></i>
         </div>
       </div>
     </div>
