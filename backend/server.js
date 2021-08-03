@@ -7,7 +7,7 @@ const csurf = require("csurf");
 const { environment } = require("./config");
 const isProduction = process.env.NODE_ENV === "production";
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 const connectToDatabase = require("./config/databaseConfig");
 const userRouter = require("./routes/userRoutes");
 
@@ -23,15 +23,15 @@ app.use(cookieParser());
 // accept incoming request object to server as JSON
 app.use(express.json());
 
-app.use(
-  csurf({
-    cookie: {
-      secure: isProduction,
-      sameSite: isProduction && "Lax",
-      httpOnly: true,
-    },
-  })
-);
+// app.use(
+//   csurf({
+//     cookie: {
+//       secure: isProduction,
+//       sameSite: isProduction && "Lax",
+//       httpOnly: true,
+//     },
+//   })
+// );
 
 // mount the route(s)
 app.use("/api/users", userRouter);
