@@ -13,7 +13,7 @@
 
 ## Introduction
 
-This was a collaborative project implemented for the Mintbean's Hackathon 2021.  The project was to implement a full stack web application to allow users to play a game of black jack against an AI.  
+This was a collaborative project implemented for the Mintbean's Hackathon 2021. The project was to implement a full stack web application to allow users to play a game of black jack against an AI.
 
 Visit the live [@demo](https://google.com)
 
@@ -40,4 +40,19 @@ Visit the live [@demo](https://google.com)
 
 <p align="center">
 <img src="./screenshots/landingpage.jpg" width="70%">
+</p>
+<p align="center">
+<img src="./screenshots/screenshot1.jpg" width="70%">
+</p>
+<p align="center">
+<img src="./screenshots/screenshot2.jpg" width="70%">
+</p>
+<p align="center">
+<img src="./screenshots/screenshot3.jpg" width="70%">
+</p>
+<p align="center">
+<img src="./screenshots/screenshot4.jpg" width="70%">
+</p>
+<p align="center">
+<img src="./screenshots/screenshot5.jpg" width="70%">
 </p>
