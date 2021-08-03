@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="./client/public/cards.png" alt="Mintbean Hackathon Blackjack Game" width="36%">
+  <a src="https://mintbeanhackblackjack.herokuapp.com/"><img src="./client/public/cards.png" alt="Mintbean Hackathon Blackjack Game" width="36%"></a>
   <br>
   Mintbean Hackathon: Black Jack Game
 </h1>
@@ -15,7 +15,7 @@
 
 This was a collaborative project implemented for the Mintbean's Hackathon 2021.  The project was to implement a full stack web application to allow users to play a game of black jack against an AI.  
 
-Visit the live [@demo](https://google.com)
+Visit the live [@demo](https://mintbeanhackblackjack.herokuapp.com/)
 
 ### Built With
 
