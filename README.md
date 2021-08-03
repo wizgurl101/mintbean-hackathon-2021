@@ -5,6 +5,6 @@
 ### Built With
 
 ## Contact
--Name - [@linkedln](https://twitter.com/your_username) 
--Name - [@linkedln](https://twitter.com/your_username) 
--Name - [@linkedln](https://twitter.com/your_username) 
+* Name - [@linkedln](https://twitter.com/your_username) 
+* Name - [@linkedln](https://twitter.com/your_username) 
+* Name - [@linkedln](https://twitter.com/your_username) 
