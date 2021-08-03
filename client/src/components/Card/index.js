@@ -198,6 +198,7 @@ function Card() {
 
     if (playerVal === 21) {
       setYouWin(true);
+      dispatch(updateUserGameStat(user));
       gameOver();
     }
   }, [playerHand.length, playingGame]);

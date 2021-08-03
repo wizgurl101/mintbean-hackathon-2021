@@ -1,4 +1,5 @@
-import { csrfFetch } from "../store/csrf";
+import axios from "axios";
+
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
@@ -20,7 +21,7 @@ const updateUserNumberOfGameWon = (user) => ({
 
 // RESTORE USER
 export const authenticate = () => async (dispatch) => {
-  const response = await csrfFetch("/api/users/restore", {
+  const response = await fetch("/api/users/restore", {
     headers: {
       "Content-Type": "application/json",
     },
@@ -37,7 +38,7 @@ export const authenticate = () => async (dispatch) => {
 
 // LOGIN USER
 export const login = (username, password) => async (dispatch) => {
-  const response = await csrfFetch("/api/users/login", {
+  const response = await fetch("/api/users/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -56,7 +57,7 @@ export const login = (username, password) => async (dispatch) => {
 
 // LOGOUT USER
 export const logout = () => async (dispatch) => {
-  await csrfFetch("/api/users/logout", {
+  await fetch("/api/users/logout", {
     method: "DELETE",
   });
   dispatch(removeUser());
@@ -79,17 +80,23 @@ export const signUp = (username, password) => async (dispatch) => {
 
 // UPDATE USER'S NUMBER OF GAME WON
 export const updateUserGameStat = (user) => async (dispatch) => {
-  const response = await csrfFetch("/api/users/updateGameStat", {
-    method: "PUT",
-    body: JSON.stringify({
-      user,
-    }),
-  });
-  const data = await response.json();
+  const obj = {
+    username: user,
+  };
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await axios.put("/api/users/updateGameStat", obj, config);
+  const data = await response.data;
+  const { username } = data;
+
   if (data.errors) {
     return data;
   }
-  dispatch(updateUserNumberOfGameWon(data));
+  dispatch(updateUserNumberOfGameWon(username));
 };
 
 // reducer
