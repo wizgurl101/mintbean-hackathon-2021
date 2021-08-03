@@ -8,7 +8,7 @@
 
 - [Introduction](#introduction)
 - [Features](#features)
-- [Developers](#contributors)
+- [The Team](#the-team)
 - [Screenshots](#screenshots)
 
 ## Introduction
@@ -28,7 +28,7 @@ This was a collaborative project implemented for the Mintbean's Hackathon 2021. 
 - Play a game against an AI
 - Display a leader board of the top 10 players
 
-## Developers
+## The Team
 
 - Jairo Calderon - [@linkedln](https://www.linkedin.com/in/jairo-calderon-44512ba5/)
 - Maira Garcia - [@linkedln](https://www.linkedin.com/in/mairagarcia524/)
