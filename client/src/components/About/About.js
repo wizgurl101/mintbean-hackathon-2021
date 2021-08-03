@@ -19,13 +19,16 @@ function About() {
               <Text fontSize="2xl">Jairo Calderon</Text>
             </div>
             <div className="about_icons">
-              <a href="https://github.com/JairoCal">
+              <a href="https://github.com/JairoCal" target="_blank">
                 <GitHubIcon />
               </a>
-              <a href="https://www.linkedin.com/in/jairo-calderon-44512ba5/">
+              <a
+                href="https://www.linkedin.com/in/jairo-calderon-44512ba5/"
+                target="_blank"
+              >
                 <LinkedInIcon />
               </a>
-              <a href="https://jairocal.github.io/Portfolio/">
+              <a href="https://jairocal.github.io/Portfolio/" target="_blank">
                 <WebIcon />
               </a>
             </div>
@@ -41,10 +44,16 @@ function About() {
               <a href="https://github.com/mairagee524">
                 <GitHubIcon />
               </a>
-              <a href="https://www.linkedin.com/in/mairagarcia524/">
+              <a
+                href="https://www.linkedin.com/in/mairagarcia524/"
+                target="_blank"
+              >
                 <LinkedInIcon />
               </a>
-              <a href="https://mairagee524.github.io/portfolio/">
+              <a
+                href="https://mairagee524.github.io/portfolio/"
+                target="_blank"
+              >
                 <WebIcon />
               </a>
             </div>
@@ -57,10 +66,13 @@ function About() {
               <Text fontSize="2xl">Nhu Phan</Text>
             </div>
             <div className="about_icons">
-              <a href="https://github.com/wizgurl101">
+              <a href="https://github.com/wizgurl101" target="_blank">
                 <GitHubIcon />
               </a>
-              <a href="https://www.linkedin.com/in/nhu-phan-canada/">
+              <a
+                href="https://www.linkedin.com/in/nhu-phan-canada/"
+                target="_blank"
+              >
                 <LinkedInIcon />
               </a>
             </div>

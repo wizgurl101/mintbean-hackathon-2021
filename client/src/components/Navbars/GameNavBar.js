@@ -5,9 +5,9 @@ import Login from "../auth/Login";
 import SignUp from "../auth/Signup";
 import { showModal2, setCurrentModal2 } from "../../store/modal2";
 import { logout } from "../../store/session";
-import { Button } from "@chakra-ui/react";
+import { Button, Stack } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
-import { Text } from '@chakra-ui/react';
+import { Text } from "@chakra-ui/react";
 
 import "./Navbar.css";
 
@@ -27,31 +27,31 @@ function Navbar() {
 
   const logoutUser = () => {
     dispatch(logout());
-    history.push('/');
+    history.push("/");
   };
 
   return (
     <div className="Navbar">
       {user && (
         <div>
-          <Text textColor="white" fontSize="xl">BlackJack!</Text>
+          <Text textColor="white" fontSize="xl">
+            BlackJack!
+          </Text>
         </div>
       )}
       <Link to="/">
-        <Button colorScheme="teal" >
-          Home
-        </Button>
+        <Button colorScheme="teal">Home</Button>
       </Link>
       <div>
         {!user && (
-          <div>
+          <Stack direction="row" spacing={3}>
             <Button colorScheme="teal" onClick={showLogin}>
               Login
             </Button>
             <Button colorScheme="teal" onClick={showSignup}>
               Signup
             </Button>
-          </div>
+          </Stack>
         )}
         {user && (
           <Button colorScheme="gray" onClick={logoutUser}>
