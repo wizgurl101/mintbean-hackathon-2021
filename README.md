@@ -1,7 +1,7 @@
 <h1 align="center">
   <a src="https://mintbeanhackblackjack.herokuapp.com/"><img src="./client/public/cards.png" alt="Mintbean Hackathon Blackjack Game" width="36%"></a>
   <br>
-  Mintbean Hackathon: Black Jack Game
+  Mintbean Hackathon 2021: BlackJack Game
 </h1>
 
 ### Table of Contents
@@ -13,16 +13,24 @@
 
 ## Introduction
 
-This was a collaborative project implemented for the Mintbean's Hackathon 2021. The project was to implement a full stack web application to allow users to play a game of black jack against an AI.
+This was a collaborative project implemented for the Mintbean's Hackathon 2021. The project was to implement a full-stack web application to allow users to play a game of BlackJack against an AI.
 
-Visit the live [@demo](https://mintbeanhackblackjack.herokuapp.com/)
+Visit the [live demo](https://mintbeanhackblackjack.herokuapp.com/)!
 
 ### Built With
 
-- Node
+- MongoDB
 - Express
 - React
-- MongoDB
+- Node
+
+### Styled With
+
+- Chakra-UI
+
+## Deployment
+
+This application is currently deployed on Heroku. We attc
 
 ## Features
 
@@ -36,7 +44,7 @@ Visit the live [@demo](https://mintbeanhackblackjack.herokuapp.com/)
 - Maira Garcia - [@linkedln](https://www.linkedin.com/in/mairagarcia524/)
 - Nhu Phan - [@linkedln](https://www.linkedin.com/in/nhu-phan-canada/)
 
-## Screenshots
+## Game Screenshots
 
 <p align="center">
 <img src="./screenshots/landingpage.jpg" width="70%">
