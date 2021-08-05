@@ -28,7 +28,7 @@ Visit the [live demo](https://mintbeanhackblackjack.herokuapp.com/)!
 
 - Chakra-UI
 
-## Deployment
+### Deployment
 
 This application is currently deployed on Heroku. We attc
 
