@@ -24,6 +24,15 @@ const io = require("socket.io")(server, {
     origin: "*",
   },
 });
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 // handle multiplayer
 
 // roomNumber changes to create a new room for the next two players
