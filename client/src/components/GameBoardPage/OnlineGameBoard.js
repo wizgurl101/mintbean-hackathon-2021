@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import GameBoard from "./index";
-import {socket, socketId} from '../utils'
+import {socket, socketID} from '../utils'
 
 function OnlineGameBoard() {
+  console.log(socketID, "my socket id")
   // setup socket client
   // const socket = io(SERVER);
 
@@ -11,12 +12,7 @@ function OnlineGameBoard() {
   // };
 
   useEffect(() => {
-    // socket.on("message", (message) => {});
-
-    // console.log(value, "value");
-    // socket.emit("playerValue", playerValue);
-
-    // console.log("player value: " + playerValue);
+    socket.emit("join")
   }, []);
 
   return (

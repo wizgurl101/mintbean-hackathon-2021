@@ -6,6 +6,6 @@ socket.on("connect", () => {
   socketID = socket.id;
 });
 
-socket.on("response", (message) => {
-  console.log(message);
-});
+// socket.on("response", (message) => {
+//   console.log(message);
+// });
