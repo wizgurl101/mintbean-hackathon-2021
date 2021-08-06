@@ -1,4 +1,3 @@
-const path = require("path");
 const express = require("express");
 const http = require("http");
 const dotenv = require("dotenv");
@@ -6,9 +5,9 @@ const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const csurf = require("csurf");
 const { environment } = require("./config");
-const isProduction = process.env.NODE_ENV === "production";
+const isProduction = environment === "production";
 
-const PORT = process.env.PORT || 3000;
+const PORT = 8000;
 const connectToDatabase = require("./config/databaseConfig");
 const userRouter = require("./routes/userRoutes");
 
@@ -99,7 +98,6 @@ io.on("connection", (socket) => {
     socket.removeAllListeners();
   });
 });
-
 
 app.use(cookieParser());
 // accept incoming request object to server as JSON
