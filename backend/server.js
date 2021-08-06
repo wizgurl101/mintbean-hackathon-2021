@@ -19,11 +19,6 @@ connectToDatabase();
 
 // setup server to handle routing and socket
 const app = express();
-
-app.use(cookieParser());
-// accept incoming request object to server as JSON
-app.use(express.json());
-
 const server = http.createServer(app);
 const io = require("socket.io")(server, {
   cors: {
@@ -104,6 +99,11 @@ io.on("connection", (socket) => {
     socket.removeAllListeners();
   });
 });
+
+
+app.use(cookieParser());
+// accept incoming request object to server as JSON
+app.use(express.json());
 
 // mount the route(s)
 app.use("/api/users", userRouter);
