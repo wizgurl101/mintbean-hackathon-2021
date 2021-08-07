@@ -39,7 +39,7 @@ function App() {
         <Route path="/gameboard" exact={true}>
           <GameBoard />
         </Route>
-        <Route path="/gameboard/online">
+        <Route path="/online">
           <OnlineGameBoard />
         </Route>
         <Route path="/about" exact={true}>
