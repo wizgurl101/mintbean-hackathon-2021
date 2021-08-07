@@ -8,6 +8,14 @@ function OnlineGameBoard() {
   const [myRoom, setMyRoom] = useState("");
   const [playerOne, setPlayerOne] = useState("");
   const [playerTwo, setPlayerTwo] = useState("");
+ /*
+  * Create the deck
+  * Create player one and player two hands
+  * Set logic for hit and hold on both players (disabling buttons if not your turn etc)
+  * Set a value for playerOne won and PlayerTwo won. First to make the boolean true sends
+    info to the backend to increment their win score by 1 and also show a banner saying who won
+  * A lot of sockets to pass the info back and forth for hitting and holding to all players in the same room
+ */
 
   // Receive info for the room we are in
   socket.on("myroom", (room) => {
