@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import GameBoard from "./index";
-import {socket, socketID} from '../utils'
+import { socket, socketID } from "../utils";
 
 function OnlineGameBoard() {
-  console.log(socketID, "my socket id")
-  // setup socket client
-  // const socket = io(SERVER);
+  const user = useSelector((state) => state.session.user);
+  const [myRoom, setMyRoom] = useState("");
 
-  // const getPlayerValue = (value) => {
-  //   setPlayerValue(value);
-  // };
+  socket.on("myroom", (room) => {
+    setMyRoom(myRoom);
+    console.log(myRoom);
+  });
 
+  socket.on("message", (message) => {
+    console.log(message);
+  });
+
+  // On load of online board join a room
   useEffect(() => {
-    socket.emit("join")
+    if (user) {
+      socket.emit("join", user);
+    }
   }, []);
 
   return (

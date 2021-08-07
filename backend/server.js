@@ -41,87 +41,53 @@ let roomNumber = 1;
 const getNumberOfClients = (roomName) => {
   return io.sockets.adapter.rooms.get(roomName).size;
 };
+// Get the sockets of the people in the room
+const getPeopleInRoom = (roomName) => {
+  return io.sockets.adapter.rooms.get(roomName);
+}
 
 io.on("connection", (socket) => {
   // console.log(socket.id, "socketid");
 
-  socket.on("join", () => {
-    console.log(`-----------------JOIN-----------------------`);
-    console.log(socket.id, "socket joined");
+  socket.on("join", (user) => {
     // if room exists then continue here by checking number of people in room
     if (io.sockets.adapter.rooms.get(`room${roomNumber}`)) {
-      console.log("the room exists");
       // If amount of people in the room is less than 2 then join the room
       if (getNumberOfClients(`room${roomNumber}`) < 2) {
-        console.log(`room ${roomNumber}  less than 2 if clause`);
         socket.join(`room${roomNumber}`);
-        console.log(socket.rooms, " rooms this user is in");
-        io.to(`room${roomNumber}`).emit(
+        console.log(getPeopleInRoom(`room${roomNumber}`));
+        io.emit("myroom", `room${roomNumber}`);
+        io.in(`room${roomNumber}`).emit(
           "message",
-          `new player join room #${roomNumber}`
+          `${user} has joined room #${roomNumber}`
         );
       }
-      // if there is already 2 people in the room then join a new room
+      // if there are already 2 people in the room then join a new room
       else {
         // create new room
         roomNumber++;
-        console.log(`room ${roomNumber}  more than 2 else clause and new room`);
         socket.join(`room${roomNumber}`);
+        io.emit("myroom", `room${roomNumber}`);
+        console.log(getPeopleInRoom(`room${roomNumber}`));
         console.log(socket.rooms, " rooms this user is in");
-
-        io.to(`room${roomNumber}`).emit(
+        io.in(`room${roomNumber}`).emit(
           "message",
-          `new player join room #${roomNumber}`
+          `${user} has joined room #${roomNumber}`
         );
       }
       // if room does not exist then create the room and have socket join that room
     } else {
       // create new room
-      console.log(`room ${roomNumber}  new room`);
       socket.join(`room${roomNumber}`);
+      console.log(getPeopleInRoom(`room${roomNumber}`));
+      io.emit("myroom", `room${roomNumber}`);
       console.log(socket.rooms, " rooms this user is in");
-
-      io.to(`room${roomNumber}`).emit(
+      io.in(`room${roomNumber}`).emit(
         "message",
-        `new player join room #${roomNumber}`
+        `${user} has joined room #${roomNumber}`
       );
     }
   });
-
-  // if (io.sockets.adapter.rooms.get("room1")) {
-  //   let room = io.sockets.adapter.rooms.get("room1");
-  //   console.log(room);
-  // }
-
-  // let count = io.of("/").on("room1").sockets.size
-
-  // if (io.sockets.adapter.rooms.get(`room${roomNumber}`)) {
-  //   if (getNumberOfClients(`room${roomNumber}`) < 2) {
-  //     console.log(`room ${roomNumber}  less than 2 if clause`);
-  //     socket.join(`room${roomNumber}`);
-  //     io.to(`room${roomNumber}`).emit(
-  //       "message",
-  //       `new player join room #${roomNumber}`
-  //     );
-  //   } else {
-  //     // create new room
-  //     roomNumber++;
-  //     console.log(`room ${roomNumber}  more than 2 else clause and new room`);
-  //     socket.join(`room${roomNumber}`);
-  //     io.to(`room${roomNumber}`).emit(
-  //       "message",
-  //       `new player join room #${roomNumber}`
-  //     );
-  //   }
-  // } else {
-  //   // create new room
-  //   console.log(`room ${roomNumber}  new room`);
-  //   socket.join(`room${roomNumber}`);
-  //   io.to(`room${roomNumber}`).emit(
-  //     "message",
-  //     `new player join room #${roomNumber}`
-  //   );
-  // }
 
   // when client disconnects
   socket.on("disconnect", () => {
