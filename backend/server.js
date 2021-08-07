@@ -46,15 +46,19 @@ const getPeopleInRoom = (roomName) => {
   return io.sockets.adapter.rooms.get(roomName);
 };
 
+// we need to keep track of the first player in each room so player 2 can see them
+let playerOne;
 io.on("connection", (socket) => {
   socket.on("join", (user) => {
     // if room exists then continue here by checking number of people in room
     if (io.sockets.adapter.rooms.get(`room${roomNumber}`)) {
-      // If amount of people in the room is less than 2 then join the room (player 1)
+      // If amount of people in the room is less than 2 then join the room (player 2)
       if (getNumberOfClients(`room${roomNumber}`) < 2) {
+        console.log(playerOne)
         // console.log(getPeopleInRoom(`room${roomNumber}`)); // shows people in room
-        io.emit("playerTwoJoin", user);
         socket.join(`room${roomNumber}`);
+        io.in(`room${roomNumber}`).emit("playerOneJoin", playerOne);
+        io.in(`room${roomNumber}`).emit("playerTwoJoin", user);
         io.in(`room${roomNumber}`).emit(
           "message",
           `${user} has joined room #${roomNumber}`
@@ -62,10 +66,10 @@ io.on("connection", (socket) => {
       }
       // if there are already 2 people in the room then join a new room
       else {
-        // create new room
         roomNumber++;
+        playerOne = user;
         socket.join(`room${roomNumber}`);
-        io.emit("playerOneJoin", user);
+        io.in(`room${roomNumber}`).emit("playerOneJoin", user);
         // console.log(getPeopleInRoom(`room${roomNumber}`)); // shows people in room
         io.in(`room${roomNumber}`).emit(
           "message",
@@ -74,9 +78,10 @@ io.on("connection", (socket) => {
       }
       // if room does not exist then create the room and have socket join that room
     } else {
+      playerOne = user;
       // create new room
       socket.join(`room${roomNumber}`);
-      io.emit("playerOneJoin", user);
+      io.in(`room${roomNumber}`).emit("playerOneJoin", user);
       // emits to everyone in the same room if someone new has joined
       io.in(`room${roomNumber}`).emit(
         "message",
