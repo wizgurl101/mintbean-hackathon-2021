@@ -44,19 +44,17 @@ const getNumberOfClients = (roomName) => {
 // Get the sockets of the people in the room
 const getPeopleInRoom = (roomName) => {
   return io.sockets.adapter.rooms.get(roomName);
-}
+};
 
 io.on("connection", (socket) => {
-  // console.log(socket.id, "socketid");
-
   socket.on("join", (user) => {
     // if room exists then continue here by checking number of people in room
     if (io.sockets.adapter.rooms.get(`room${roomNumber}`)) {
-      // If amount of people in the room is less than 2 then join the room
+      // If amount of people in the room is less than 2 then join the room (player 1)
       if (getNumberOfClients(`room${roomNumber}`) < 2) {
+        // console.log(getPeopleInRoom(`room${roomNumber}`)); // shows people in room
+        io.emit("playerTwoJoin", user);
         socket.join(`room${roomNumber}`);
-        console.log(getPeopleInRoom(`room${roomNumber}`));
-        io.emit("myroom", `room${roomNumber}`);
         io.in(`room${roomNumber}`).emit(
           "message",
           `${user} has joined room #${roomNumber}`
@@ -67,9 +65,8 @@ io.on("connection", (socket) => {
         // create new room
         roomNumber++;
         socket.join(`room${roomNumber}`);
-        io.emit("myroom", `room${roomNumber}`);
-        console.log(getPeopleInRoom(`room${roomNumber}`));
-        console.log(socket.rooms, " rooms this user is in");
+        io.emit("playerOneJoin", user);
+        // console.log(getPeopleInRoom(`room${roomNumber}`)); // shows people in room
         io.in(`room${roomNumber}`).emit(
           "message",
           `${user} has joined room #${roomNumber}`
@@ -79,18 +76,19 @@ io.on("connection", (socket) => {
     } else {
       // create new room
       socket.join(`room${roomNumber}`);
-      console.log(getPeopleInRoom(`room${roomNumber}`));
-      io.emit("myroom", `room${roomNumber}`);
-      console.log(socket.rooms, " rooms this user is in");
+      io.emit("playerOneJoin", user);
+      // emits to everyone in the same room if someone new has joined
       io.in(`room${roomNumber}`).emit(
         "message",
         `${user} has joined room #${roomNumber}`
       );
     }
+    // Send back data or rooms we are in
+    io.emit("myroom", `room${roomNumber}`);
   });
 
   // when client disconnects
-  socket.on("disconnect", () => {
+  io.on("disconnect", () => {
     // send to the player that left
     socket.emit("message", "Left BlackJack Online Room");
     // send to the other player
